@@ -1,0 +1,6 @@
+{
+  "name": "Desafío Huayna Potosí 2026",
+  "description": "Sitio oficial e informativo del Desafío Huayna Potosí 2026: 47 km de ciclismo de montaña (MTB XCM) a 5.029 m s. n. m. en la Cordillera Real de Bolivia. Rutas, altimetría, calculadora de hipoxia, inscripciones y seguridad.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

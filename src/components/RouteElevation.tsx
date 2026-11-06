@@ -1,0 +1,356 @@
+import React, { useState } from 'react';
+import { Mountain, Compass, MapPin, AlertCircle, HeartPulse, Shield, Flag } from 'lucide-react';
+import { EVENT_DATA, Checkpoint } from '../data/eventData';
+
+export const RouteElevation: React.FC = () => {
+  const [selectedCp, setSelectedCp] = useState<Checkpoint>(EVENT_DATA.checkpoints[3]); // default to highest point 5029m
+
+  // SVG coordinates for the 47km profile
+  // Points: (x, y) where x is 0 to 800, y is mapped from 3800m to 5100m
+  // Invert Y for SVG: max elevation (5100m) -> y=20, min elevation (3800m) -> y=240
+  const minElev = 3700;
+  const maxElev = 5200;
+  const elevRange = maxElev - minElev;
+
+  const getY = (elev: number) => {
+    const fraction = (elev - minElev) / elevRange;
+    return 240 - fraction * 210;
+  };
+
+  const getX = (km: number) => {
+    return 40 + (km / 47) * 720;
+  };
+
+  // Detailed profile path nodes
+  const profilePoints = [
+    { km: 0, elev: 3860 },
+    { km: 5, elev: 3920 },
+    { km: 10, elev: 4010 },
+    { km: 14, elev: 4120 },
+    { km: 19, elev: 4220 },
+    { km: 24, elev: 4330 },
+    { km: 28, elev: 4450 },
+    { km: 32, elev: 4620 },
+    { km: 35, elev: 4810 },
+    { km: 39, elev: 5029 }, // Peak
+    { km: 43, elev: 4800 },
+    { km: 47, elev: 4650 }, // Finish
+  ];
+
+  const pathD = profilePoints.reduce((acc, p, i) => {
+    const x = getX(p.km);
+    const y = getY(p.elev);
+    return i === 0 ? `M ${x} ${y}` : `${acc} L ${x} ${y}`;
+  }, '');
+
+  const areaD = `${pathD} L ${getX(47)} 240 L ${getX(0)} 240 Z`;
+
+  return (
+    <section id="ruta" className="py-16 sm:py-20 bg-[#0a0d14] border-b border-slate-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+        {/* Section Header */}
+        <div className="max-w-3xl space-y-3">
+          <div className="text-xs font-semibold uppercase tracking-widest text-amber-400">
+            Geografía, Altimetría y Parámetros Técnicos
+          </div>
+          <h2 className="font-['Barlow_Condensed'] text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight text-white">
+            Perfil de Ruta: De Patamanta al Abra Glaciar
+          </h2>
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+            Un trazado 100% off-road de 47 km que arranca en la meseta altiplánica y asciende de manera sostenida
+            hacia los contrafuertes rocosos de la Cordillera Real, culminando en la histórica comunidad minera de Alto Milluni.
+          </p>
+        </div>
+
+        {/* Interactive Altimetry Profile Graphic */}
+        <div className="bg-slate-900/90 border border-slate-800 rounded-lg p-4 sm:p-6 shadow-xl space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-slate-800">
+            <div>
+              <span className="text-xs font-medium uppercase tracking-wider text-slate-400">
+                Altimetría Interactiva en Tiempo Real
+              </span>
+              <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                <Mountain className="w-5 h-5 text-amber-400" />
+                Desnivel Positivo Acumulado: +1.478 m
+              </h3>
+            </div>
+            <div className="text-xs text-slate-400">
+              Haz clic en cualquiera de los puntos de control para ver detalles de superficie y socorro.
+            </div>
+          </div>
+
+          {/* SVG Chart Container */}
+          <div className="relative overflow-x-auto">
+            <svg
+              viewBox="0 0 800 270"
+              className="w-full h-auto min-w-[650px] overflow-visible"
+              aria-label="Gráfico de altimetría de la carrera"
+            >
+              <defs>
+                <linearGradient id="altitudeGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.45" />
+                  <stop offset="70%" stopColor="#f59e0b" stopOpacity="0.08" />
+                  <stop offset="100%" stopColor="#0f172a" stopOpacity="0.0" />
+                </linearGradient>
+                <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#38bdf8" />
+                  <stop offset="60%" stopColor="#f59e0b" />
+                  <stop offset="100%" stopColor="#ef4444" />
+                </linearGradient>
+              </defs>
+
+              {/* Horizontal altitude grid lines */}
+              {[4000, 4500, 5000].map((level) => {
+                const y = getY(level);
+                return (
+                  <g key={level} className="text-slate-700">
+                    <line x1="30" y1={y} x2="770" y2={y} stroke="#1e293b" strokeDasharray="3 3" />
+                    <text
+                      x="25"
+                      y={y + 4}
+                      fill="#64748b"
+                      fontSize="10"
+                      textAnchor="end"
+                      fontFamily="JetBrains Mono"
+                    >
+                      {level}m
+                    </text>
+                  </g>
+                );
+              })}
+
+              {/* Filled Elevation Area */}
+              <path d={areaD} fill="url(#altitudeGradient)" />
+
+              {/* Main Elevation Stroke Line */}
+              <path d={pathD} fill="none" stroke="url(#lineGradient)" strokeWidth="3" strokeLinecap="round" />
+
+              {/* Checkpoints Markers */}
+              {EVENT_DATA.checkpoints.map((cp) => {
+                const cx = getX(cp.distanceKm);
+                const cy = getY(cp.elevationM);
+                const isSelected = selectedCp.id === cp.id;
+
+                return (
+                  <g
+                    key={cp.id}
+                    onClick={() => setSelectedCp(cp)}
+                    className="cursor-pointer group"
+                  >
+                    {/* Vertical guideline */}
+                    <line
+                      x1={cx}
+                      y1={cy}
+                      x2={cx}
+                      y2="240"
+                      stroke={isSelected ? '#f59e0b' : '#334155'}
+                      strokeWidth={isSelected ? '1.5' : '1'}
+                      strokeDasharray="2 2"
+                    />
+
+                    {/* Checkpoint Circle */}
+                    <circle
+                      cx={cx}
+                      cy={cy}
+                      r={isSelected ? 8 : 5}
+                      fill={isSelected ? '#f59e0b' : '#0f172a'}
+                      stroke={isSelected ? '#ffffff' : '#f59e0b'}
+                      strokeWidth="2.5"
+                      className="transition-all duration-150"
+                    />
+
+                    {/* Metric Label above dot */}
+                    <text
+                      x={cx}
+                      y={cy - 12}
+                      textAnchor="middle"
+                      fill={isSelected ? '#f59e0b' : '#94a3b8'}
+                      fontSize={isSelected ? '11' : '10'}
+                      fontWeight={isSelected ? '700' : '500'}
+                      fontFamily="JetBrains Mono"
+                    >
+                      {cp.elevationM}m
+                    </text>
+
+                    {/* Distance label at bottom */}
+                    <text
+                      x={cx}
+                      y="255"
+                      textAnchor="middle"
+                      fill="#64748b"
+                      fontSize="10"
+                      fontFamily="JetBrains Mono"
+                    >
+                      {cp.distanceKm}km
+                    </text>
+                  </g>
+                );
+              })}
+            </svg>
+          </div>
+
+          {/* Selected Checkpoint Detail Card */}
+          <div className="bg-slate-950/70 border border-slate-800 rounded p-4 sm:p-5 transition-all">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-3 border-b border-slate-800/80">
+              <div>
+                <div className="flex items-center gap-2 text-xs font-semibold text-amber-400 uppercase tracking-wider">
+                  <MapPin className="w-3.5 h-3.5" />
+                  Punto de Control Seleccionado
+                </div>
+                <h4 className="text-xl font-bold text-white mt-0.5">{selectedCp.name}</h4>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-4 text-xs font-['JetBrains_Mono']">
+                <div className="bg-slate-900 px-3 py-1.5 rounded border border-slate-800">
+                  <span className="text-slate-400">Kilómetro:</span>{' '}
+                  <strong className="text-white">{selectedCp.distanceKm} km</strong>
+                </div>
+                <div className="bg-slate-900 px-3 py-1.5 rounded border border-slate-800">
+                  <span className="text-slate-400">Altitud:</span>{' '}
+                  <strong className="text-amber-400">{selectedCp.elevationM} msnm</strong>
+                </div>
+                <div className="bg-slate-900 px-3 py-1.5 rounded border border-slate-800">
+                  <span className="text-slate-400">Pendiente:</span>{' '}
+                  <strong className="text-white">+{selectedCp.slopePercent}%</strong>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 text-xs sm:text-sm">
+              <div className="space-y-1">
+                <span className="text-slate-400 font-medium uppercase tracking-wide text-[11px] block">
+                  Descripción del Tramo
+                </span>
+                <p className="text-slate-200 leading-relaxed">{selectedCp.description}</p>
+              </div>
+
+              <div className="space-y-1">
+                <span className="text-slate-400 font-medium uppercase tracking-wide text-[11px] block">
+                  Superficie & Rodadura
+                </span>
+                <p className="text-slate-200 leading-relaxed">{selectedCp.surface}</p>
+              </div>
+
+              <div className="space-y-1">
+                <span className="text-slate-400 font-medium uppercase tracking-wide text-[11px] block">
+                  Servicios & Respaldo
+                </span>
+                <div className="flex flex-wrap gap-1.5 pt-0.5">
+                  {selectedCp.services.map((srv, idx) => (
+                    <span
+                      key={idx}
+                      className="text-[11px] text-slate-300 bg-slate-900 border border-slate-800 rounded px-2 py-0.5"
+                    >
+                      {srv}
+                    </span>
+                  ))}
+                  {selectedCp.oxygenAvailable && (
+                    <span className="text-[11px] text-emerald-400 bg-emerald-950/50 border border-emerald-800/60 rounded px-2 py-0.5 flex items-center gap-1">
+                      <HeartPulse className="w-3 h-3" /> Oxigenoterapia
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 2-Column Split: Technical Specifications Table + Kilian Bron / Andean MTB context */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* Column 1: Technical Parameters Table */}
+          <div className="lg:col-span-7 bg-slate-900/60 border border-slate-800 rounded-lg p-5 sm:p-6 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+                <h3 className="font-['Barlow_Condensed'] text-xl font-bold uppercase tracking-wide text-white">
+                  Ficha Técnica Oficial de la Prueba
+                </h3>
+                <span className="text-xs font-['JetBrains_Mono'] text-amber-400">UCI XCM Format</span>
+              </div>
+
+              <div className="divide-y divide-slate-800/80 text-xs sm:text-sm">
+                <div className="py-2.5 flex justify-between gap-4">
+                  <span className="text-slate-400 font-medium">Distancia Total</span>
+                  <span className="text-slate-100 font-['JetBrains_Mono'] font-semibold">47 kilómetros</span>
+                </div>
+                <div className="py-2.5 flex justify-between gap-4">
+                  <span className="text-slate-400 font-medium">Desnivel Positivo (+)</span>
+                  <span className="text-slate-100 font-['JetBrains_Mono'] font-semibold">+1.478 metros acumulados</span>
+                </div>
+                <div className="py-2.5 flex justify-between gap-4">
+                  <span className="text-slate-400 font-medium">Altitud Máxima</span>
+                  <span className="text-amber-400 font-['JetBrains_Mono'] font-semibold">5.029 m s. n. m. (Abra Glaciar)</span>
+                </div>
+                <div className="py-2.5 flex justify-between gap-4">
+                  <span className="text-slate-400 font-medium">Superficie de Rodaje</span>
+                  <span className="text-slate-200">100% camino no pavimentado, tierra y roca</span>
+                </div>
+                <div className="py-2.5 flex justify-between gap-4">
+                  <span className="text-slate-400 font-medium">Punto de Partida</span>
+                  <span className="text-slate-200">Comunidad de Patamanta (3.860 msnm)</span>
+                </div>
+                <div className="py-2.5 flex justify-between gap-4">
+                  <span className="text-slate-400 font-medium">Puntos Intermedios</span>
+                  <span className="text-slate-200">Vilaque y Churiaque</span>
+                </div>
+                <div className="py-2.5 flex justify-between gap-4">
+                  <span className="text-slate-400 font-medium">Punto de Llegada</span>
+                  <span className="text-slate-200 font-semibold text-white">Alto Milluni (4.650 msnm)</span>
+                </div>
+                <div className="py-2.5 flex justify-between gap-4">
+                  <span className="text-slate-400 font-medium">Reconocimiento Oficial</span>
+                  <span className="text-slate-200">Domingo, 18 de octubre de 2026</span>
+                </div>
+                <div className="py-2.5 flex justify-between gap-4">
+                  <span className="text-slate-400 font-medium">Presentación Oficial</span>
+                  <span className="text-slate-200">Martes, 3 de noviembre (Patio Histórico ALP)</span>
+                </div>
+                <div className="py-2.5 flex justify-between gap-4">
+                  <span className="text-slate-400 font-medium">Fecha de Carrera</span>
+                  <span className="text-amber-400 font-bold">Domingo, 8 de noviembre de 2026</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
+              <span>Tiempo límite de carrera: 6 horas con punto de corte en Churiaque a las 11:30 AM.</span>
+            </div>
+          </div>
+
+          {/* Column 2: Contextual Narrative & Image Card */}
+          <div className="lg:col-span-5 bg-slate-900/60 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
+            <div className="relative h-48 sm:h-56 bg-slate-950 overflow-hidden">
+              <img
+                src="/src/assets/images/cyclist_high_altitude_xcm_1792904387327.jpg"
+                alt="Ciclista de montaña en rampa extrema de alta montaña andina"
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+              <div className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md px-2.5 py-1 rounded text-[11px] font-semibold text-amber-400 uppercase tracking-wider border border-slate-800">
+                Génesis Deportiva
+              </div>
+            </div>
+
+            <div className="p-5 sm:p-6 space-y-4">
+              <h3 className="font-['Barlow_Condensed'] text-xl font-bold uppercase tracking-wide text-white">
+                De la Hazaña de Kilian Bron al Circuito Oficial XCM
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                El Nevado Huayna Potosí capturó la atención del mundo del ciclismo extremo cuando el atleta francés
+                de freeride <strong className="text-white">Kilian Bron</strong> descendió sus laderas glaciares para su premiada producción audiovisual <em className="text-amber-300">«Mirage»</em>.
+              </p>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                El club <strong className="text-white">MTB Rodadas La Paz</strong> y su división <strong className="text-white">MTB Rodadas Racing Team</strong> transformaron ese magnetismo en una competencia estructurada de resistencia, articulando rescate médico especializado, soporte institucional y turismo deportivo comunitario.
+              </p>
+
+              <div className="p-3 rounded bg-amber-500/10 border border-amber-500/20 text-xs text-amber-200">
+                «El Huayna Potosí no solo es un reto físico: es una inmersión en la mística de los Andes bolivianos y el respeto a la Madre Tierra (Pachamama).»
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
