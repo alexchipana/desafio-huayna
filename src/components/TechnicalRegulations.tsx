@@ -45,53 +45,53 @@ export const TechnicalRegulationsModal: React.FC = () => {
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex flex-wrap gap-2 p-1.5 bg-slate-900 rounded-lg border border-slate-800">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-1.5 bg-slate-900 rounded-lg border border-slate-800">
           <button
             onClick={() => setActiveTab('cronograma')}
-            className={`px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-md transition-colors cursor-pointer flex items-center gap-2 ${
+            className={`px-3 py-2.5 text-xs font-bold uppercase tracking-wider rounded-md transition-colors cursor-pointer flex items-center justify-center gap-2 text-center ${
               activeTab === 'cronograma'
                 ? 'bg-amber-400 text-slate-950 shadow-md'
-                : 'text-slate-400 hover:text-white'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
             }`}
           >
-            <Clock className="w-4 h-4" />
-            Cronograma del Domingo 8
+            <Clock className="w-4 h-4 shrink-0" />
+            <span>Cronograma</span>
           </button>
 
           <button
             onClick={() => setActiveTab('bicicletas')}
-            className={`px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-md transition-colors cursor-pointer flex items-center gap-2 ${
+            className={`px-3 py-2.5 text-xs font-bold uppercase tracking-wider rounded-md transition-colors cursor-pointer flex items-center justify-center gap-2 text-center ${
               activeTab === 'bicicletas'
                 ? 'bg-amber-400 text-slate-950 shadow-md'
-                : 'text-slate-400 hover:text-white'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
             }`}
           >
-            <Bike className="w-4 h-4" />
-            Bicicletas Admitidas (MTB, Gravel & E-Bike)
+            <Bike className="w-4 h-4 shrink-0" />
+            <span>Bicicletas</span>
           </button>
 
           <button
             onClick={() => setActiveTab('premios')}
-            className={`px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-md transition-colors cursor-pointer flex items-center gap-2 ${
+            className={`px-3 py-2.5 text-xs font-bold uppercase tracking-wider rounded-md transition-colors cursor-pointer flex items-center justify-center gap-2 text-center ${
               activeTab === 'premios'
                 ? 'bg-amber-400 text-slate-950 shadow-md'
-                : 'text-slate-400 hover:text-white'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
             }`}
           >
-            <Award className="w-4 h-4" />
-            Premios Económicos & Quórum
+            <Award className="w-4 h-4 shrink-0" />
+            <span>Premios</span>
           </button>
 
           <button
             onClick={() => setActiveTab('deslinde')}
-            className={`px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-md transition-colors cursor-pointer flex items-center gap-2 ${
+            className={`px-3 py-2.5 text-xs font-bold uppercase tracking-wider rounded-md transition-colors cursor-pointer flex items-center justify-center gap-2 text-center ${
               activeTab === 'deslinde'
                 ? 'bg-amber-400 text-slate-950 shadow-md'
-                : 'text-slate-400 hover:text-white'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
             }`}
           >
-            <FileText className="w-4 h-4" />
-            Deslinde de Responsabilidades (Anexo 1)
+            <FileText className="w-4 h-4 shrink-0" />
+            <span>Deslinde</span>
           </button>
         </div>
 

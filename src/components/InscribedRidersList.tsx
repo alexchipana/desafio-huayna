@@ -142,7 +142,7 @@ export const InscribedRidersList: React.FC = () => {
             <div className="sm:col-span-3 flex p-1 bg-slate-950 rounded-lg border border-slate-800">
               <button
                 onClick={() => setSelectedGender('All')}
-                className={`flex-1 py-1 text-xs font-semibold rounded transition-colors cursor-pointer ${
+                className={`flex-1 py-1.5 sm:py-1 px-1 text-[11px] sm:text-xs font-semibold rounded transition-colors cursor-pointer text-center ${
                   selectedGender === 'All' ? 'bg-amber-400 text-slate-950' : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -150,7 +150,7 @@ export const InscribedRidersList: React.FC = () => {
               </button>
               <button
                 onClick={() => setSelectedGender('Damas')}
-                className={`flex-1 py-1 text-xs font-semibold rounded transition-colors cursor-pointer ${
+                className={`flex-1 py-1.5 sm:py-1 px-1 text-[11px] sm:text-xs font-semibold rounded transition-colors cursor-pointer text-center ${
                   selectedGender === 'Damas' ? 'bg-amber-400 text-slate-950' : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -158,7 +158,7 @@ export const InscribedRidersList: React.FC = () => {
               </button>
               <button
                 onClick={() => setSelectedGender('Varones')}
-                className={`flex-1 py-1 text-xs font-semibold rounded transition-colors cursor-pointer ${
+                className={`flex-1 py-1.5 sm:py-1 px-1 text-[11px] sm:text-xs font-semibold rounded transition-colors cursor-pointer text-center ${
                   selectedGender === 'Varones' ? 'bg-amber-400 text-slate-950' : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -217,8 +217,12 @@ export const InscribedRidersList: React.FC = () => {
 
         {/* Riders Table without DORSAL and without ESTADO */}
         <div className="bg-slate-900/80 border border-slate-800 rounded-lg overflow-hidden shadow-xl">
+          <div className="sm:hidden px-3.5 py-2 bg-slate-950/80 border-b border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
+            <span>Desliza lateralmente para ver todos los datos</span>
+            <span className="text-amber-400 font-bold">⇄</span>
+          </div>
           <div className="overflow-x-auto max-h-[550px] overflow-y-auto">
-            <table className="w-full text-left text-xs border-collapse">
+            <table className="w-full min-w-[600px] text-left text-xs border-collapse">
               <thead className="bg-[#0a0d14] text-slate-400 uppercase tracking-wider text-[11px] sticky top-0 z-10 border-b border-slate-800">
                 <tr>
                   <th className="py-3 px-3.5 font-semibold text-center w-12">N°</th>

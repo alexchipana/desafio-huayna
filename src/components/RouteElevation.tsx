@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Mountain, Compass, MapPin, AlertCircle, HeartPulse, Shield, Flag } from 'lucide-react';
+import { Mountain, Compass, MapPin, AlertCircle, HeartPulse, Shield, Flag, CloudRain, Snowflake, Wrench, ShieldAlert } from 'lucide-react';
 import { EVENT_DATA, Checkpoint } from '../data/eventData';
-import cyclistImage from '../assets/images/cyclist_high_altitude_xcm_1792904387327.jpg';
 
 export const RouteElevation: React.FC = () => {
   const [selectedCp, setSelectedCp] = useState<Checkpoint>(EVENT_DATA.checkpoints[3]); // default to highest point 5030m
@@ -90,12 +89,17 @@ export const RouteElevation: React.FC = () => {
           </div>
 
           {/* SVG Chart Container */}
-          <div className="relative overflow-x-auto">
-            <svg
-              viewBox="0 0 800 270"
-              className="w-full h-auto min-w-[650px] overflow-visible"
-              aria-label="Gráfico de altimetría de la carrera"
-            >
+          <div>
+            <div className="sm:hidden pb-1.5 text-[11px] text-slate-400 flex items-center justify-between">
+              <span>Desliza lateralmente para ver todo el perfil</span>
+              <span className="text-amber-400 font-bold">⇄</span>
+            </div>
+            <div className="relative overflow-x-auto">
+              <svg
+                viewBox="0 0 800 270"
+                className="w-full h-auto min-w-[650px] overflow-visible"
+                aria-label="Gráfico de altimetría de la carrera"
+              >
               <defs>
                 <linearGradient id="altitudeGradient" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.45" />
@@ -198,6 +202,7 @@ export const RouteElevation: React.FC = () => {
               })}
             </svg>
           </div>
+        </div>
 
           {/* Selected Checkpoint Detail Card */}
           <div className="bg-slate-950/70 border border-slate-800 rounded p-4 sm:p-5 transition-all">
@@ -265,14 +270,14 @@ export const RouteElevation: React.FC = () => {
           </div>
         </div>
 
-        {/* 2-Column Split: Technical Specifications Table + Kilian Bron / Andean MTB context */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        {/* 2-Column Split: Technical Specifications Table + Key Findings from Technical Talk */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           {/* Column 1: Technical Parameters Table */}
-          <div className="lg:col-span-7 bg-slate-900/60 border border-slate-800 rounded-lg p-5 sm:p-6 flex flex-col justify-between">
+          <div className="lg:col-span-6 bg-slate-900/60 border border-slate-800 rounded-lg p-4 sm:p-6 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                 <h3 className="font-['Barlow_Condensed'] text-xl font-bold uppercase tracking-wide text-white">
-                  Ficha Técnica Oficial de la Prueba
+                  Ficha Técnica Oficial
                 </h3>
                 <span className="text-xs font-['JetBrains_Mono'] text-amber-400">Modalidad MTB</span>
               </div>
@@ -280,7 +285,7 @@ export const RouteElevation: React.FC = () => {
               <div className="divide-y divide-slate-800/80 text-xs sm:text-sm">
                 <div className="py-2.5 flex justify-between gap-4">
                   <span className="text-slate-400 font-medium">Distancia Total</span>
-                  <span className="text-slate-100 font-['JetBrains_Mono'] font-semibold">46.9 - 48.7 km</span>
+                  <span className="text-slate-100 font-['JetBrains_Mono'] font-semibold">46.9 km (48.7 km trazado)</span>
                 </div>
                 <div className="py-2.5 flex justify-between gap-4">
                   <span className="text-slate-400 font-medium">Desnivel Positivo (+)</span>
@@ -296,7 +301,7 @@ export const RouteElevation: React.FC = () => {
                 </div>
                 <div className="py-2.5 flex justify-between gap-4">
                   <span className="text-slate-400 font-medium">Punto de Partida</span>
-                  <span className="text-slate-200">Comunidad de Patamanta (3.954 msnm)</span>
+                  <span className="text-slate-200">Patamanta (3.954 msnm)</span>
                 </div>
                 <div className="py-2.5 flex justify-between gap-4">
                   <span className="text-slate-400 font-medium">Puntos Intermedios</span>
@@ -307,14 +312,6 @@ export const RouteElevation: React.FC = () => {
                   <span className="text-slate-200 font-semibold text-white">Alto Milluni (4.635 msnm)</span>
                 </div>
                 <div className="py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-400 font-medium">Reconocimiento Oficial</span>
-                  <span className="text-slate-200">Domingo, 18 de octubre de 2026</span>
-                </div>
-                <div className="py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-400 font-medium">Presentación Oficial</span>
-                  <span className="text-slate-200">Martes, 3 de noviembre (Patio Histórico ALP)</span>
-                </div>
-                <div className="py-2.5 flex justify-between gap-4">
                   <span className="text-slate-400 font-medium">Fecha de Carrera</span>
                   <span className="text-amber-400 font-bold">Domingo, 8 de noviembre de 2026</span>
                 </div>
@@ -323,40 +320,53 @@ export const RouteElevation: React.FC = () => {
 
             <div className="pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center gap-2">
               <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
-              <span>Tiempo límite de carrera: 6 horas con punto de corte en Churiaque a las 11:30 AM.</span>
+              <span>Tiempo límite: 6 horas con punto de corte en Churiaque a las 11:30 AM.</span>
             </div>
           </div>
 
-          {/* Column 2: Contextual Narrative & Image Card */}
-          <div className="lg:col-span-5 bg-slate-900/60 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
-            <div className="relative h-48 sm:h-56 bg-slate-950 overflow-hidden">
-              <img
-                src={cyclistImage}
-                alt="Ciclista de montaña en rampa extrema de alta montaña andina"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
-              <div className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md px-2.5 py-1 rounded text-[11px] font-semibold text-amber-400 uppercase tracking-wider border border-slate-800">
-                Génesis Deportiva
+          {/* Column 2: Key Guidance from Official Technical Talk */}
+          <div className="lg:col-span-6 bg-slate-900/60 border border-slate-800 rounded-lg p-4 sm:p-6 flex flex-col justify-between space-y-4">
+            <div>
+              <div className="flex items-center gap-2 pb-3 border-b border-slate-800">
+                <ShieldAlert className="w-5 h-5 text-amber-400 shrink-0" />
+                <h3 className="font-['Barlow_Condensed'] text-xl font-bold uppercase tracking-wide text-white">
+                  Aspectos Clave de la Charla Técnica
+                </h3>
+              </div>
+
+              <div className="space-y-3 pt-3 text-xs sm:text-sm">
+                <div className="p-3 rounded bg-slate-950/70 border border-slate-800 space-y-1">
+                  <div className="flex items-center gap-2 font-semibold text-sky-400 text-xs uppercase">
+                    <CloudRain className="w-3.5 h-3.5" /> Clima & Altitud en Ruta
+                  </div>
+                  <p className="text-slate-300 text-xs leading-relaxed">
+                    Pronóstico con probabilidad de llovizna en tramo bajo (km 0-15) y alta probabilidad de aguanieve/nieve sobre los 4.500 msnm. Imprescindible rompevientos térmico impermeable y guantes completos.
+                  </p>
+                </div>
+
+                <div className="p-3 rounded bg-slate-950/70 border border-slate-800 space-y-1">
+                  <div className="flex items-center gap-2 font-semibold text-amber-400 text-xs uppercase">
+                    <Wrench className="w-3.5 h-3.5" /> Recomendación de Frenos & Transmisión
+                  </div>
+                  <p className="text-slate-300 text-xs leading-relaxed">
+                    Uso recomendado de <strong>pastillas de freno metálicas</strong> ante la presencia de barro y lodo. Revisar transmisión y presiones de neumáticos para barro y roca suelta.
+                  </p>
+                </div>
+
+                <div className="p-3 rounded bg-slate-950/70 border border-slate-800 space-y-1">
+                  <div className="flex items-center gap-2 font-semibold text-rose-400 text-xs uppercase">
+                    <AlertCircle className="w-3.5 h-3.5" /> Descenso Crítico previo a Milluni
+                  </div>
+                  <p className="text-slate-300 text-xs leading-relaxed">
+                    Tras superar la cota máxima del Abra Glaciar, el descenso hacia Alto Milluni presenta erosiones por agua, piedra suelta y gradas naturales. Se exige precaución extrema y control de velocidad.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="p-5 sm:p-6 space-y-4">
-              <h3 className="font-['Barlow_Condensed'] text-xl font-bold uppercase tracking-wide text-white">
-                De la Hazaña de Kilian Bron al Circuito Oficial MTB
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                El Nevado Huayna Potosí capturó la atención del mundo del ciclismo extremo cuando el atleta francés
-                de freeride <strong className="text-white">Kilian Bron</strong> descendió sus laderas glaciares para su premiada producción audiovisual <em className="text-amber-300">«Mirage»</em>.
-              </p>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                El club <strong className="text-white">MTB Rodadas La Paz</strong> y su división <strong className="text-white">MTB Rodadas Racing Team</strong> transformaron ese magnetismo en una competencia estructurada de resistencia, articulando rescate médico especializado, soporte institucional y turismo deportivo comunitario.
-              </p>
-
-              <div className="p-3 rounded bg-amber-500/10 border border-amber-500/20 text-xs text-amber-200">
-                «El Huayna Potosí no solo es un reto físico: es una inmersión en la mística de los Andes bolivianos y el respeto a la Madre Tierra (Pachamama).»
-              </div>
+            <div className="p-3 rounded bg-emerald-950/30 border border-emerald-500/30 text-xs text-emerald-300 flex items-center gap-2">
+              <span className="font-semibold uppercase tracking-wider text-[11px] text-emerald-400">Ruta Protegida:</span>
+              <span>Prohibido el ingreso de vehículos particulares para seguridad de los 167 ciclistas.</span>
             </div>
           </div>
         </div>

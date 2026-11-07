@@ -105,10 +105,10 @@ export const Hero: React.FC<HeroProps> = () => {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 pt-2">
               <a
                 href="#inscritos"
-                className="px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-slate-950 bg-amber-400 hover:bg-amber-300 rounded transition-all flex items-center gap-2.5 shadow-lg shadow-amber-500/20 cursor-pointer"
+                className="w-full sm:w-auto px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-slate-950 bg-amber-400 hover:bg-amber-300 rounded transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-amber-500/20 cursor-pointer"
               >
                 Ver Lista de Inscritos (167)
                 <ArrowRight className="w-4 h-4" />
@@ -116,12 +116,12 @@ export const Hero: React.FC<HeroProps> = () => {
 
               <a
                 href="#reglamento-oficial"
-                className="px-5 py-3.5 text-sm font-semibold tracking-wider text-slate-200 hover:text-white bg-slate-800/80 hover:bg-slate-800 border border-slate-700 rounded transition-colors flex items-center gap-2"
+                className="w-full sm:w-auto px-5 py-3.5 text-sm font-semibold tracking-wider text-slate-200 hover:text-white bg-slate-800/80 hover:bg-slate-800 border border-slate-700 rounded transition-colors flex items-center justify-center gap-2"
               >
                 Cronograma del Domingo 8
               </a>
 
-              <div className="px-3.5 py-2 rounded bg-rose-950/50 border border-rose-800/60 text-rose-300 text-xs font-semibold uppercase tracking-wider flex items-center gap-2">
+              <div className="w-full sm:w-auto px-3.5 py-2.5 rounded bg-rose-950/50 border border-rose-800/60 text-rose-300 text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
                 Inscripciones Cerradas
               </div>

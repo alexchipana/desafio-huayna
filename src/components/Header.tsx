@@ -54,13 +54,20 @@ export const Header: React.FC<HeaderProps> = () => {
         </nav>
 
         {/* Zone 3: 1 Primary Action */}
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <a
             href="#inscritos"
-            className="px-4 py-2 text-xs font-semibold tracking-wide uppercase text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5"
+            className="hidden sm:flex px-3 sm:px-4 py-2 text-xs font-semibold tracking-wide uppercase text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded transition-colors whitespace-nowrap shrink-0 items-center gap-1.5"
           >
             <span className="w-2 h-2 rounded-full bg-rose-500"></span>
             Inscripciones Cerradas (167 Cupos)
+          </a>
+          <a
+            href="#inscritos"
+            className="flex sm:hidden px-2.5 py-1.5 text-[11px] font-semibold uppercase text-slate-300 bg-slate-800 border border-slate-700 rounded items-center gap-1"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+            167 Atletas
           </a>
 
           {/* Mobile menu trigger */}
@@ -78,18 +85,25 @@ export const Header: React.FC<HeaderProps> = () => {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#0d121c] border-b border-slate-800 px-6 py-4 space-y-3">
           <a
+            href="#inscritos"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block py-1.5 text-sm font-medium text-slate-200 hover:text-amber-400"
+          >
+            Lista de Inscritos (167)
+          </a>
+          <a
+            href="#reglamento-oficial"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block py-1.5 text-sm font-medium text-slate-200 hover:text-amber-400"
+          >
+            Cronograma & Normas Técnicas
+          </a>
+          <a
             href="#ruta"
             onClick={() => setMobileMenuOpen(false)}
             className="block py-1.5 text-sm font-medium text-slate-200 hover:text-amber-400"
           >
             Ruta & Altimetría
-          </a>
-          <a
-            href="#categorias"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-1.5 text-sm font-medium text-slate-200 hover:text-amber-400"
-          >
-            Categorías & Premios
           </a>
           <a
             href="#categorias"
@@ -105,20 +119,13 @@ export const Header: React.FC<HeaderProps> = () => {
           >
             Seguridad & Logística
           </a>
-          <a
-            href="#reglamento"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-1.5 text-sm font-medium text-slate-200 hover:text-amber-400"
-          >
-            Reglamento & Contacto
-          </a>
           <div className="pt-2 border-t border-slate-800">
             <a
               href="#inscritos"
               onClick={() => setMobileMenuOpen(false)}
               className="block w-full py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-300 bg-slate-800 hover:bg-slate-700 rounded transition-colors text-center"
             >
-              Inscripciones Cerradas · Ver 167 Inscritos
+              Inscripciones Cerradas · Ver Nómina
             </a>
           </div>
         </div>

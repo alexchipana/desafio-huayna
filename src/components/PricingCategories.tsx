@@ -15,126 +15,14 @@ export const PricingCategories: React.FC<PricingCategoriesProps> = () => {
         {/* Section Title */}
         <div className="max-w-3xl space-y-3">
           <div className="text-xs font-semibold uppercase tracking-widest text-amber-400">
-            Competitividad, Bolsa de Premios & Tarifas
+            Competitividad & Bolsa de Premios
           </div>
           <h2 className="font-['Barlow_Condensed'] text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight text-white">
-            Estructura de Categorías & Registro
+            Categorías Oficiales & Premiación
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Diseñado para acoger desde corredores federados del más alto nivel andino hasta entusiastas del mountain bike de aventura.
-            Inscripciones abiertas con cupos limitados para preservar la seguridad en alta montaña.
+            Estructura competitiva avalada por el Club MTB Rodadas La Paz con premiación en efectivo, trofeos e indumentaria técnica de patrocinadores.
           </p>
-        </div>
-
-        {/* Pricing Cards (Individual vs Team 10+1) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Individual Pass */}
-          <div className="bg-slate-900/90 border border-slate-800 rounded-lg p-6 sm:p-8 flex flex-col justify-between relative shadow-xl">
-            <div className="space-y-5">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                <div>
-                  <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider">
-                    Pase Individual
-                  </span>
-                  <h3 className="text-2xl font-bold text-white mt-0.5">Inscripción General</h3>
-                </div>
-                <div className="text-right">
-                  <div className="font-['JetBrains_Mono'] text-3xl font-extrabold text-white tabular-nums">
-                    130 <span className="text-sm font-sans font-normal text-amber-400">BOB</span>
-                  </div>
-                  <div className="text-[11px] text-slate-400">Por corredor</div>
-                </div>
-              </div>
-
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Acceso completo a la competencia de 47 km en cualquier categoría habilitada. Válido para ciclistas nacionales y extranjeros.
-              </p>
-
-              <div className="space-y-2.5 pt-2">
-                <div className="text-xs font-semibold uppercase tracking-wider text-slate-300">
-                  El kit de competidor incluye:
-                </div>
-                {EVENT_DATA.pricing.includedItems.slice(0, 4).map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
-                    <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-6 mt-6 border-t border-slate-800 space-y-3">
-              <div className="w-full py-3 text-xs font-bold uppercase tracking-wider text-slate-300 bg-slate-800/90 border border-slate-700 rounded text-center flex items-center justify-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-rose-500"></span>
-                Inscripciones Cerradas · Cupos Agotados
-              </div>
-              <div className="text-[11px] text-center text-rose-400 font-medium">
-                Período concluido · 167 Corredores Habilitados
-              </div>
-            </div>
-          </div>
-
-          {/* Team Pass (10 + 1) */}
-          <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-amber-950/20 border-2 border-slate-700/60 rounded-lg p-6 sm:p-8 flex flex-col justify-between relative shadow-xl">
-            <div className="space-y-5">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                      Promoción Clubes & Delegaciones
-                    </span>
-                    <span className="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 font-bold px-1.5 py-0.5 rounded uppercase">
-                      Cerrado
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mt-0.5">Inscripción por Equipos</h3>
-                </div>
-                <div className="text-right">
-                  <div className="font-['JetBrains_Mono'] text-3xl font-extrabold text-slate-400 tabular-nums">
-                    1.300 <span className="text-sm font-sans font-normal text-slate-500">BOB</span>
-                  </div>
-                  <div className="text-[11px] text-slate-400 font-medium">11 cupos al precio de 10</div>
-                </div>
-              </div>
-
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Diseñado para clubes ciclistas, escuderías departamentales y delegaciones internacionales.
-                Registra 10 integrantes y obtén <strong className="text-white font-semibold">1 cupo totalmente gratis</strong> con nombre de equipo oficial en los dorsales.
-              </p>
-
-              <div className="space-y-2.5 pt-2">
-                <div className="text-xs font-semibold uppercase tracking-wider text-slate-300">
-                  Beneficios para equipos participantes:
-                </div>
-                <div className="flex items-start gap-2 text-xs text-slate-300">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>11 kits completos de cronometraje y medallas</span>
-                </div>
-                <div className="flex items-start gap-2 text-xs text-slate-300">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>Área designada para carpa técnica de equipo en Alto Milluni</span>
-                </div>
-                <div className="flex items-start gap-2 text-xs text-slate-300">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>1 vehículo de auxilio mecánico (moto/cuadratrack) acreditado</span>
-                </div>
-                <div className="flex items-start gap-2 text-xs text-slate-300">
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>Gestión consolidada de drop-bags y asistencia técnica grupal</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-6 mt-6 border-t border-slate-800 space-y-3">
-              <div className="w-full py-3 text-xs font-bold uppercase tracking-wider text-slate-300 bg-slate-800/90 border border-slate-700 rounded text-center flex items-center justify-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-rose-500"></span>
-                Inscripciones por Equipos Cerradas
-              </div>
-              <div className="text-[11px] text-center text-slate-400">
-                Consulta la lista oficial en la sección de inscritos
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Categories & Prize Showcase */}
@@ -142,14 +30,14 @@ export const PricingCategories: React.FC<PricingCategoriesProps> = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h3 className="font-['Barlow_Condensed'] text-2xl font-bold uppercase tracking-wide text-white">
-                Bolsa de Premios & Categorías Oficiales
+                Bolsa de Premios por Categoría
               </h3>
               <p className="text-xs sm:text-sm text-slate-400">
                 Selecciona una categoría para conocer sus requerimientos de edad y la dotación de premios.
               </p>
             </div>
             <div className="text-xs text-slate-400 font-['JetBrains_Mono']">
-              Premios en Efectivo + Insumos de Marcas Patrocinadoras
+              Premios en Efectivo + Insumos de Patrocinadores
             </div>
           </div>
 
