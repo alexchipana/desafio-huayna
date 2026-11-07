@@ -5,8 +5,8 @@ import concertImage from '../assets/images/rock_band_armadura_milluni_1792904387
 
 export const ConcertAndSponsors: React.FC = () => {
   return (
-    <section className="py-16 sm:py-20 bg-[#0a0d14] border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-14">
+    <section className="py-10 sm:py-20 bg-[#0a0d14] border-b border-slate-800 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8 sm:space-y-12">
         {/* Culture & Closing Concert Block */}
         <div className="bg-gradient-to-r from-slate-900 via-slate-900 to-amber-950/30 border border-slate-800 rounded-lg overflow-hidden shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center">

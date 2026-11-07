@@ -43,8 +43,8 @@ export const InscribedRidersList: React.FC = () => {
   const foreignCount = OFFICIAL_INSCRIBED_RIDERS.filter((r) => r.country !== 'Bolivia').length;
 
   return (
-    <section id="inscritos" className="py-16 sm:py-20 bg-[#0a0d14] border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8">
+    <section id="inscritos" className="py-10 sm:py-20 bg-[#0a0d14] border-b border-slate-800 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-6 sm:space-y-8">
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-slate-800">
           <div className="max-w-3xl space-y-2">
@@ -93,45 +93,45 @@ export const InscribedRidersList: React.FC = () => {
         </div>
 
         {/* International Presence Bar */}
-        <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-3.5 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-300">
+        <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-3 sm:p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs text-slate-300">
           <div className="flex items-center gap-2">
             <Globe2 className="w-4 h-4 text-amber-400 shrink-0" />
-            <span className="font-semibold text-white">Delegaciones Internacionales Presentes:</span>
+            <span className="font-semibold text-white">Delegaciones Internacionales:</span>
           </div>
-          <div className="flex flex-wrap gap-2 text-[11px]">
-            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 text-[10px] sm:text-[11px]">
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 sm:py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
               <CountryFlag country="Bolivia" /> Bolivia (150+)
             </span>
-            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
-              <CountryFlag country="Perú" /> Perú (Wayqis Club - 10 corredores)
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 sm:py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
+              <CountryFlag country="Perú" /> Perú (Wayqis - 10)
             </span>
-            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
-              <CountryFlag country="España" /> España (Revilla del Campo)
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 sm:py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
+              <CountryFlag country="España" /> España
             </span>
-            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 sm:py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
               <CountryFlag country="Alemania" /> Alemania
             </span>
-            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 sm:py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
               <CountryFlag country="Francia" /> Francia
             </span>
-            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
-              <CountryFlag country="Estados Unidos" /> Estados Unidos
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 sm:py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
+              <CountryFlag country="Estados Unidos" /> EE.UU.
             </span>
-            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 sm:py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
               <CountryFlag country="Uruguay" /> Uruguay
             </span>
           </div>
         </div>
 
         {/* Search & Filter Controls */}
-        <div className="bg-slate-900/90 border border-slate-800 rounded-lg p-4 space-y-3">
-          <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
+        <div className="bg-slate-900/90 border border-slate-800 rounded-lg p-3 sm:p-4 space-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3">
             {/* Search Input */}
             <div className="sm:col-span-5 relative">
               <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Buscar por nombre de ciclista, team/club (ej. KTM, Wayqis)..."
+                placeholder="Buscar ciclista o club..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full bg-slate-950 border border-slate-700 rounded-lg pl-9 pr-3 py-2 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
@@ -166,28 +166,25 @@ export const InscribedRidersList: React.FC = () => {
               </button>
             </div>
 
-            {/* Country Selector */}
-            <div className="sm:col-span-2">
+            {/* Country & Category Selectors in 2 columns on mobile */}
+            <div className="grid grid-cols-2 gap-2 sm:col-span-4">
               <select
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
+                className="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-2 text-xs text-white focus:outline-none focus:border-amber-400 truncate"
               >
-                <option value="All">Todos los Países</option>
+                <option value="All">Todos Países</option>
                 {countries.filter((c) => c !== 'All').map((c) => (
                   <option key={c} value={c}>{c}</option>
                 ))}
               </select>
-            </div>
 
-            {/* Category Selector */}
-            <div className="sm:col-span-2">
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
+                className="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-2 text-xs text-white focus:outline-none focus:border-amber-400 truncate"
               >
-                <option value="All">Todas las Categorías</option>
+                <option value="All">Categorías</option>
                 {categories.filter((c) => c !== 'All').map((cat) => (
                   <option key={cat} value={cat}>{cat}</option>
                 ))}

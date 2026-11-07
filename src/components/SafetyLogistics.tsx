@@ -5,8 +5,8 @@ import milluniImage from '../assets/images/route_alto_milluni_glacier_1792904385
 
 export const SafetyLogistics: React.FC = () => {
   return (
-    <section id="seguridad" className="py-16 sm:py-20 bg-[#0d121c] border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+    <section id="seguridad" className="py-10 sm:py-20 bg-[#0d121c] border-b border-slate-800 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8 sm:space-y-12">
         {/* Section Header */}
         <div className="max-w-3xl space-y-3">
           <div className="text-xs font-semibold uppercase tracking-widest text-amber-400">

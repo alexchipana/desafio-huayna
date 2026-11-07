@@ -6,11 +6,11 @@ export const TechnicalRegulationsModal: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'cronograma' | 'bicicletas' | 'premios' | 'deslinde'>('cronograma');
 
   return (
-    <section id="reglamento-oficial" className="py-16 sm:py-20 bg-[#0d121c] border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+    <section id="reglamento-oficial" className="py-10 sm:py-20 bg-[#0d121c] border-b border-slate-800 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8 sm:space-y-12">
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-slate-800">
-          <div className="max-w-3xl space-y-3">
+          <div className="max-w-3xl space-y-2 sm:space-y-3">
             <div className="text-xs font-semibold uppercase tracking-widest text-amber-400">
               Convocatoria Oficial V1 · Reglamento & Disposiciones de Carrera
             </div>
@@ -22,12 +22,12 @@ export const TechnicalRegulationsModal: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 shrink-0 w-full sm:w-auto">
             <a
               href={EVENT_DATA.keyMetrics.gpxUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold uppercase tracking-wider flex items-center gap-2 transition-colors"
+              className="px-4 py-2.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
             >
               <Download className="w-4 h-4 text-amber-400" />
               Descargar GPX de Ruta
@@ -36,7 +36,7 @@ export const TechnicalRegulationsModal: React.FC = () => {
               href={EVENT_DATA.keyMetrics.stravaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2.5 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-semibold uppercase tracking-wider flex items-center gap-2 transition-colors"
+              className="px-4 py-2.5 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
             >
               <ExternalLink className="w-4 h-4" />
               Ver en Strava (48.7 km)

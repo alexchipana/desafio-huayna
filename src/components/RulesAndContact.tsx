@@ -26,7 +26,7 @@ export const RulesAndContact: React.FC = () => {
   const faqs = [
     {
       q: '¿Cómo funciona el transporte y entrega de equipaje a la meta (Drop-Bag)?',
-      a: 'En la partida de Patamanta (06:00 AM a 07:15 AM) cada ciclista entrega una mochila o bolso debidamente etiquetado con su número de dorsal. La organización traslada estos bultos en camión cerrado directamente a la zona de meta en Alto Milluni para que los atletas tengan ropa térmica seca e invernal inmediatamente al cruzar el arco.',
+      a: 'En la partida de Patamanta (06:00 AM a 07:15 AM) cada ciclista entrega una mochila o bolso resistente cerrado debidamente etiquetado con su número de dorsal. La organización traslada estos bultos directamente a la zona de meta en Alto Milluni para que los atletas tengan ropa térmica seca e invernal inmediatamente al cruzar el arco. No incluir laptops, tablets ni dinero en efectivo.',
     },
     {
       q: '¿Cómo se organiza el retorno vehicular desde Alto Milluni hacia La Paz y El Alto?',
@@ -37,18 +37,18 @@ export const RulesAndContact: React.FC = () => {
       a: 'La 2da Compañía de Bomberos Voluntarios Santa Bárbara cuenta con puestos de oxigenoterapia en Churiaque y en el abra a 5.029m. En caso de requerirlo, el corredor es estabilizado con flujo de oxígeno medicinal y evacuado de inmediato en ambulancia 4x4 hacia cotas inferiores.',
     },
     {
-      q: '¿Cuáles son los canales oficiales para el pago de la inscripción?',
-      a: 'Se puede abonar vía escaneo de código QR Simple a través de cualquier banca digital boliviana (Banco Unión, BCP, Banco Bisa, etc.), adquiriendo entradas en Jalo.com.bo, o mediante la plataforma internacional RunSignUp / BikeSignUp para corredores del exterior.',
+      q: '¿Cómo se realizará la entrega de dorsales y acreditación técnica?',
+      a: 'La entrega de números dorsales, chips de cronometraje y la verificación del material de seguridad se realiza en el punto de concentración en Patamanta desde las 06:00 AM previo al cierre de parque cerrado.',
     },
     {
       q: '¿Se permite el uso de bicicletas eléctricas (E-MTB / Pedelec)?',
-      a: 'Para la edición 2026, las categorías competitivas oficiales son exclusivamente de tracción humana. La categoría Aficionados/Open admite E-MTBs bajo modalidad participativa de exhibición con cronometraje diferenciado.',
+      a: 'Para la edición 2026, las categorías competitivas oficiales son exclusivamente de tracción humana. La categoría Aficionados/Open admite E-MTBs bajo modalidad participativa con cronometraje diferenciado.',
     },
   ];
 
   return (
-    <section id="reglamento" className="py-16 sm:py-20 bg-[#0d121c] border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+    <section id="reglamento" className="py-10 sm:py-20 bg-[#0d121c] border-b border-slate-800 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8 sm:space-y-12">
         {/* Section Title */}
         <div className="max-w-3xl space-y-3">
           <div className="text-xs font-semibold uppercase tracking-widest text-amber-400">
@@ -143,19 +143,19 @@ export const RulesAndContact: React.FC = () => {
               <div className="flex items-center gap-2.5 pb-2 border-b border-slate-800">
                 <MessageCircle className="w-5 h-5 text-emerald-400" />
                 <h3 className="text-base font-bold text-white uppercase tracking-wide">
-                  Canales Oficiales de WhatsApp
+                  Canales Oficiales de Consulta
                 </h3>
               </div>
 
               <p className="text-xs text-slate-400 leading-relaxed">
-                El equipo organizador de MTB Rodadas La Paz responde en tiempo real consultas sobre rutas, estados del camino y transferencias QR:
+                El equipo organizador de MTB Rodadas La Paz atiende consultas técnicas a los corredores acreditados:
               </p>
 
               <div className="space-y-2.5 pt-1">
                 {EVENT_DATA.registrationChannels.whatsappContacts.map((contact, idx) => (
                   <a
                     key={idx}
-                    href={`https://wa.me/${contact.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hola MTB Rodadas La Paz, deseo información e inscribirme al Desafío Huayna Potosí 2026.')}`}
+                    href={`https://wa.me/${contact.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hola MTB Rodadas La Paz, soy participante del Desafío Huayna Potosí 2026 y tengo una consulta técnica.')}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-between p-3 rounded bg-slate-950/70 border border-slate-800 hover:border-emerald-500/40 transition-colors group"
@@ -172,21 +172,6 @@ export const RulesAndContact: React.FC = () => {
                       Chatear <ExternalLink className="w-3 h-3" />
                     </span>
                   </a>
-                ))}
-              </div>
-            </div>
-
-            {/* External Registration Portals */}
-            <div className="bg-slate-900/90 border border-slate-800 rounded-lg p-5 space-y-3 shadow-xl">
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-300 block">
-                Plataformas de Registro Externas:
-              </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                {EVENT_DATA.registrationChannels.platforms.map((plat, idx) => (
-                  <div key={idx} className="p-3 bg-slate-950/80 rounded border border-slate-800 space-y-1">
-                    <div className="font-bold text-white">{plat.name}</div>
-                    <div className="text-[10px] text-slate-400 leading-tight">{plat.note}</div>
-                  </div>
                 ))}
               </div>
             </div>

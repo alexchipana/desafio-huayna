@@ -17,7 +17,7 @@ import { Footer } from './components/Footer';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#0a0d14] text-slate-100 selection:bg-amber-400 selection:text-slate-950 flex flex-col">
+    <div className="min-h-screen bg-[#0a0d14] text-slate-100 selection:bg-amber-400 selection:text-slate-950 flex flex-col overflow-x-hidden w-full max-w-full">
       {/* Top Bar Header */}
       <Header />
 

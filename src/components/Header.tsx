@@ -53,28 +53,12 @@ export const Header: React.FC<HeaderProps> = () => {
           </a>
         </nav>
 
-        {/* Zone 3: 1 Primary Action */}
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <a
-            href="#inscritos"
-            className="hidden sm:flex px-3 sm:px-4 py-2 text-xs font-semibold tracking-wide uppercase text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded transition-colors whitespace-nowrap shrink-0 items-center gap-1.5"
-          >
-            <span className="w-2 h-2 rounded-full bg-rose-500"></span>
-            Inscripciones Cerradas (167 Cupos)
-          </a>
-          <a
-            href="#inscritos"
-            className="flex sm:hidden px-2.5 py-1.5 text-[11px] font-semibold uppercase text-slate-300 bg-slate-800 border border-slate-700 rounded items-center gap-1"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-            167 Atletas
-          </a>
-
-          {/* Mobile menu trigger */}
+        {/* Zone 3: Mobile menu trigger */}
+        <div className="flex items-center gap-2 lg:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-slate-400 hover:text-slate-100 transition-colors cursor-pointer"
-            aria-label="Abrir menú"
+            className="p-2 text-slate-400 hover:text-slate-100 transition-colors cursor-pointer"
+            aria-label="Abrir menú de navegación"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -87,47 +71,38 @@ export const Header: React.FC<HeaderProps> = () => {
           <a
             href="#inscritos"
             onClick={() => setMobileMenuOpen(false)}
-            className="block py-1.5 text-sm font-medium text-slate-200 hover:text-amber-400"
+            className="block py-2 text-sm font-semibold text-amber-400 hover:text-amber-300"
           >
             Lista de Inscritos (167)
           </a>
           <a
             href="#reglamento-oficial"
             onClick={() => setMobileMenuOpen(false)}
-            className="block py-1.5 text-sm font-medium text-slate-200 hover:text-amber-400"
+            className="block py-2 text-sm font-medium text-slate-200 hover:text-amber-400"
           >
             Cronograma & Normas Técnicas
           </a>
           <a
             href="#ruta"
             onClick={() => setMobileMenuOpen(false)}
-            className="block py-1.5 text-sm font-medium text-slate-200 hover:text-amber-400"
+            className="block py-2 text-sm font-medium text-slate-200 hover:text-amber-400"
           >
             Ruta & Altimetría
           </a>
           <a
             href="#categorias"
             onClick={() => setMobileMenuOpen(false)}
-            className="block py-1.5 text-sm font-medium text-slate-200 hover:text-amber-400"
+            className="block py-2 text-sm font-medium text-slate-200 hover:text-amber-400"
           >
             Categorías & Premios
           </a>
           <a
             href="#seguridad"
             onClick={() => setMobileMenuOpen(false)}
-            className="block py-1.5 text-sm font-medium text-slate-200 hover:text-amber-400"
+            className="block py-2 text-sm font-medium text-slate-200 hover:text-amber-400"
           >
             Seguridad & Logística
           </a>
-          <div className="pt-2 border-t border-slate-800">
-            <a
-              href="#inscritos"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block w-full py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-300 bg-slate-800 hover:bg-slate-700 rounded transition-colors text-center"
-            >
-              Inscripciones Cerradas · Ver Nómina
-            </a>
-          </div>
         </div>
       )}
     </header>

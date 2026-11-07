@@ -10,8 +10,8 @@ export const PricingCategories: React.FC<PricingCategoriesProps> = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>(EVENT_DATA.categories[0]);
 
   return (
-    <section id="categorias" className="py-16 sm:py-20 bg-[#0a0d14] border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+    <section id="categorias" className="py-10 sm:py-20 bg-[#0a0d14] border-b border-slate-800 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8 sm:space-y-12">
         {/* Section Title */}
         <div className="max-w-3xl space-y-3">
           <div className="text-xs font-semibold uppercase tracking-widest text-amber-400">

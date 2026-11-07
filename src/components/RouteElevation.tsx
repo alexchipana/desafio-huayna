@@ -55,8 +55,8 @@ export const RouteElevation: React.FC = () => {
   const areaD = `${pathD} L ${getX(totalKm)} 240 L ${getX(0)} 240 Z`;
 
   return (
-    <section id="ruta" className="py-16 sm:py-20 bg-[#0a0d14] border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+    <section id="ruta" className="py-10 sm:py-20 bg-[#0a0d14] border-b border-slate-800 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-8 sm:space-y-12">
         {/* Section Header */}
         <div className="max-w-3xl space-y-3">
           <div className="text-xs font-semibold uppercase tracking-widest text-amber-400">
