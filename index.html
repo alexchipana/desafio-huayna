@@ -16,8 +16,12 @@
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="w0plMOqTQvu8YL1-A8w43gyZH66mIrEjBLzIgdNi5RE" />
 
-    <!-- Favicon -->
+    <!-- Favicon & Touch Icons -->
+    <link rel="icon" type="image/x-icon" href="/desafio-huayna/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/desafio-huayna/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/desafio-huayna/favicon-48.png" />
     <link rel="icon" type="image/svg+xml" href="/desafio-huayna/favicon.svg" />
+    <link rel="apple-touch-icon" href="/desafio-huayna/favicon-48.png" />
 
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website" />
@@ -42,6 +46,15 @@
     {
       "@context": "https://schema.org",
       "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://alexchipana.github.io/desafio-huayna/#website",
+          "name": "Desafío Huayna Potosí",
+          "alternateName": ["Desafío Huayna Potosí 2026", "MTB Rodadas La Paz"],
+          "url": "https://alexchipana.github.io/desafio-huayna/",
+          "description": "Sitio oficial de la carrera de ciclismo de montaña MTB Desafío Huayna Potosí 2026 organizado por MTB Rodadas La Paz.",
+          "inLanguage": "es"
+        },
         {
           "@type": "SportsEvent",
           "@id": "https://alexchipana.github.io/desafio-huayna/#event",
@@ -100,7 +113,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- SEO Prerender Content for Search Engine Crawlers -->
+      <header style="display:none" aria-hidden="true">
+        <h1>Desafío Huayna Potosí 2026 | MTB Rodadas La Paz</h1>
+        <p>Competencia oficial de ciclismo de montaña (MTB) en alta montaña de 47 km en la Cordillera Real de Bolivia, ascendiendo hasta los 5.030 m s. n. m. en el Abra Glaciar Huayna Potosí desde la comunidad de Patamanta hasta Alto Milluni.</p>
+        <p>Organizado por el Club MTB Rodadas La Paz y la escudería MTB Rodadas Racing Team. Convocatoria oficial, lista de 167 competidores confirmados, reglamento técnico y perfil altimétrico GPX.</p>
+      </header>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

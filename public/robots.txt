@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://alexchipana.github.io/desafio-huayna/sitemap.xml
+
