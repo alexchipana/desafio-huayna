@@ -1,6 +1,7 @@
 import React from 'react';
 import { Music, Sparkles, Shield, Wrench, Coffee, HeartPulse } from 'lucide-react';
 import { EVENT_DATA } from '../data/eventData';
+import concertImage from '../assets/images/rock_band_armadura_milluni_1792904387327.jpg';
 
 export const ConcertAndSponsors: React.FC = () => {
   return (
@@ -47,10 +48,10 @@ export const ConcertAndSponsors: React.FC = () => {
             {/* Concert image */}
             <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-950">
               <img
-                src="/src/assets/images/rock_band_armadura_milluni_1792904387327.jpg"
+                src={concertImage}
                 alt="Concierto de rock de Armadura en la meta de Alto Milluni frente al Huayna Potosí"
                 className="w-full h-full object-cover min-h-[280px]"
-                referrerPolicy="no-referrer"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
             </div>

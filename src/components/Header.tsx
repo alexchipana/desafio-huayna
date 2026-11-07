@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Menu, X, Bike } from 'lucide-react';
 
 interface HeaderProps {
-  onOpenRegister: () => void;
+  onOpenRegister?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenRegister }) => {
+export const Header: React.FC<HeaderProps> = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -45,8 +45,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRegister }) => {
           <a href="#ruta" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
             Ruta & Altimetría
           </a>
-          <a href="#fisiologia" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
-            Simulador de Altitud
+          <a href="#categorias" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
+            Categorías & Premios
           </a>
           <a href="#seguridad" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
             Seguridad & Logística
@@ -85,11 +85,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenRegister }) => {
             Ruta & Altimetría
           </a>
           <a
-            href="#fisiologia"
+            href="#categorias"
             onClick={() => setMobileMenuOpen(false)}
             className="block py-1.5 text-sm font-medium text-slate-200 hover:text-amber-400"
           >
-            Calculadora Fisiológica
+            Categorías & Premios
           </a>
           <a
             href="#categorias"

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Mountain, ShieldCheck, Calendar, MapPin } from 'lucide-react';
 import { EVENT_DATA } from '../data/eventData';
+import heroImage from '../assets/images/hero_huayna_potosi_mtb_1792904385157.jpg';
 
 interface HeroProps {
-  onOpenRegister: () => void;
+  onOpenRegister?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
+export const Hero: React.FC<HeroProps> = () => {
   // Target race date: November 8, 2026 06:00:00 Bolivia time (UTC-4)
   const [timeLeft, setTimeLeft] = useState<{
     days: number;
@@ -45,8 +46,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
           <span aria-hidden="true" className="text-slate-600">·</span>
           <span>{EVENT_DATA.discipline}</span>
           <span aria-hidden="true" className="text-slate-600">·</span>
-          <span>Nevado Huayna Potosí (6.090 m)</span>
-          <span aria-hidden="true" className="text-slate-600">·</span>
           <span>Edición 2026</span>
         </div>
 
@@ -77,13 +76,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
             <h1 className="font-['Barlow_Condensed'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight text-white leading-[0.95]">
               47 km sobre los <span className="text-amber-400">5.029 m s. n. m.</span>
               <br />
-              <span className="text-slate-200">El Desafío Andino Definitivo</span>
+              <span className="text-slate-200">El Desafío Definitivo</span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
-              La prueba de ciclismo de montaña (XCM) en alta altitud más exigente de la Cordillera Real.
+              La prueba de ciclismo de montaña (MTB) en alta altitud más exigente de la Cordillera Real.
               Un ascenso extremo desde la comunidad de Patamanta hasta el pie de monte del glaciar Huayna Potosí en Alto Milluni,
-              enfrentando <strong className="text-white font-semibold">hipoxia severa, +1.478 metros de desnivel</strong> y senderos 100% de montaña.
+              enfrentando <strong className="text-white font-semibold">+1.450 metros de desnivel</strong> (+1.704 m acumulado GPX) y senderos 100% de montaña.
             </p>
 
             {/* Event Dates & Trust strip */}
@@ -166,10 +165,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
           <div className="lg:col-span-5">
             <div className="relative rounded-lg overflow-hidden border border-slate-800 shadow-2xl bg-slate-900">
               <img
-                src="/src/assets/images/hero_huayna_potosi_mtb_1792904385157.jpg"
+                src={heroImage}
                 alt="Ciclista de montaña ascendiendo frente al Nevado Huayna Potosí"
                 className="w-full h-auto aspect-16/10 object-cover"
-                referrerPolicy="no-referrer"
+                loading="eager"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
 
@@ -200,9 +199,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
           <div className="p-4 sm:p-5 rounded-lg bg-slate-900/80 border border-slate-800/80">
             <div className="text-xs uppercase tracking-wider text-slate-400">Desnivel Acumulado</div>
             <div className="font-['JetBrains_Mono'] font-bold text-2xl sm:text-3xl text-white mt-1 tabular-nums">
-              +1.478 <span className="text-sm font-sans text-amber-400">m</span>
+              +1.450 <span className="text-sm font-sans text-amber-400">m</span>
             </div>
-            <div className="text-xs text-slate-400 mt-1">Ascenso sostenido andino</div>
+            <div className="text-xs text-slate-400 mt-1">+1.704 m acumulado GPX oficial</div>
           </div>
 
           <div className="p-4 sm:p-5 rounded-lg bg-slate-900/80 border border-slate-800/80">

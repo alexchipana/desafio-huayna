@@ -24,11 +24,11 @@ export const Footer: React.FC = () => {
 
           {/* Quick Nav Links */}
           <div className="flex flex-wrap gap-x-8 gap-y-2 text-xs font-medium">
+            <a href="#inscritos" className="hover:text-amber-400 transition-colors">
+              Lista de Inscritos
+            </a>
             <a href="#ruta" className="hover:text-amber-400 transition-colors">
               Ruta & Altimetría
-            </a>
-            <a href="#fisiologia" className="hover:text-amber-400 transition-colors">
-              Calculadora Fisiológica
             </a>
             <a href="#categorias" className="hover:text-amber-400 transition-colors">
               Categorías & Premios
@@ -36,7 +36,7 @@ export const Footer: React.FC = () => {
             <a href="#seguridad" className="hover:text-amber-400 transition-colors">
               Seguridad Médica
             </a>
-            <a href="#reglamento" className="hover:text-amber-400 transition-colors">
+            <a href="#reglamento-oficial" className="hover:text-amber-400 transition-colors">
               Reglamento Técnico
             </a>
           </div>

@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { Mountain, Compass, MapPin, AlertCircle, HeartPulse, Shield, Flag } from 'lucide-react';
 import { EVENT_DATA, Checkpoint } from '../data/eventData';
+import cyclistImage from '../assets/images/cyclist_high_altitude_xcm_1792904387327.jpg';
 
 export const RouteElevation: React.FC = () => {
-  const [selectedCp, setSelectedCp] = useState<Checkpoint>(EVENT_DATA.checkpoints[3]); // default to highest point 5029m
+  const [selectedCp, setSelectedCp] = useState<Checkpoint>(EVENT_DATA.checkpoints[3]); // default to highest point 5030m
 
-  // SVG coordinates for the 47km profile
-  // Points: (x, y) where x is 0 to 800, y is mapped from 3800m to 5100m
-  // Invert Y for SVG: max elevation (5100m) -> y=20, min elevation (3800m) -> y=240
-  const minElev = 3700;
+  // SVG coordinates for the 46.9km profile from GPX
+  // Invert Y for SVG: max elevation (5200m) -> y=20, min elevation (3800m) -> y=240
+  const minElev = 3800;
   const maxElev = 5200;
   const elevRange = maxElev - minElev;
+  const totalKm = 46.9;
 
   const getY = (elev: number) => {
     const fraction = (elev - minElev) / elevRange;
@@ -18,23 +19,32 @@ export const RouteElevation: React.FC = () => {
   };
 
   const getX = (km: number) => {
-    return 40 + (km / 47) * 720;
+    return 40 + (km / totalKm) * 720;
   };
 
-  // Detailed profile path nodes
+  // Profile points extracted from official GPX (DOC-20260903-WA0073..gpx)
   const profilePoints = [
-    { km: 0, elev: 3860 },
-    { km: 5, elev: 3920 },
-    { km: 10, elev: 4010 },
-    { km: 14, elev: 4120 },
-    { km: 19, elev: 4220 },
-    { km: 24, elev: 4330 },
-    { km: 28, elev: 4450 },
-    { km: 32, elev: 4620 },
-    { km: 35, elev: 4810 },
-    { km: 39, elev: 5029 }, // Peak
-    { km: 43, elev: 4800 },
-    { km: 47, elev: 4650 }, // Finish
+    { km: 0.0, elev: 3954 },
+    { km: 2.3, elev: 4062 },
+    { km: 4.7, elev: 4073 },
+    { km: 7.0, elev: 4123 },
+    { km: 9.4, elev: 4240 },
+    { km: 11.7, elev: 4360 },
+    { km: 14.1, elev: 4470 },
+    { km: 16.4, elev: 4621 },
+    { km: 18.8, elev: 4761 },
+    { km: 21.1, elev: 4798 },
+    { km: 23.4, elev: 4726 },
+    { km: 25.8, elev: 4696 },
+    { km: 28.1, elev: 4612 },
+    { km: 30.5, elev: 4678 },
+    { km: 32.8, elev: 4893 },
+    { km: 35.2, elev: 4936 },
+    { km: 37.6, elev: 5030 }, // Abra Glaciar Huayna Potosi Cota Maxima
+    { km: 39.9, elev: 4907 },
+    { km: 42.2, elev: 4745 },
+    { km: 44.5, elev: 4593 },
+    { km: 46.9, elev: 4635 }, // Meta Alto Milluni
   ];
 
   const pathD = profilePoints.reduce((acc, p, i) => {
@@ -43,7 +53,7 @@ export const RouteElevation: React.FC = () => {
     return i === 0 ? `M ${x} ${y}` : `${acc} L ${x} ${y}`;
   }, '');
 
-  const areaD = `${pathD} L ${getX(47)} 240 L ${getX(0)} 240 Z`;
+  const areaD = `${pathD} L ${getX(totalKm)} 240 L ${getX(0)} 240 Z`;
 
   return (
     <section id="ruta" className="py-16 sm:py-20 bg-[#0a0d14] border-b border-slate-800">
@@ -51,13 +61,13 @@ export const RouteElevation: React.FC = () => {
         {/* Section Header */}
         <div className="max-w-3xl space-y-3">
           <div className="text-xs font-semibold uppercase tracking-widest text-amber-400">
-            Geografía, Altimetría y Parámetros Técnicos
+            Geografía, Altimetría y Parámetros Técnicos (GPX Oficial)
           </div>
           <h2 className="font-['Barlow_Condensed'] text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight text-white">
             Perfil de Ruta: De Patamanta al Abra Glaciar
           </h2>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Un trazado 100% off-road de 47 km que arranca en la meseta altiplánica y asciende de manera sostenida
+            Un trazado 100% off-road de 46.9 km que arranca en la meseta altiplánica y asciende de manera sostenida
             hacia los contrafuertes rocosos de la Cordillera Real, culminando en la histórica comunidad minera de Alto Milluni.
           </p>
         </div>
@@ -67,15 +77,15 @@ export const RouteElevation: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-slate-800">
             <div>
               <span className="text-xs font-medium uppercase tracking-wider text-slate-400">
-                Altimetría Interactiva en Tiempo Real
+                Altimetría Interactiva · Perfil GPX Oficial
               </span>
               <h3 className="text-lg font-bold text-white flex items-center gap-2">
                 <Mountain className="w-5 h-5 text-amber-400" />
-                Desnivel Positivo Acumulado: +1.478 m
+                Desnivel Positivo: +1.450 m (+1.704 m acumulado GPX)
               </h3>
             </div>
             <div className="text-xs text-slate-400">
-              Haz clic en cualquiera de los puntos de control para ver detalles de superficie y socorro.
+              Haz clic en cualquiera de los puntos de control para ver detalles de altitud, distancia y socorro.
             </div>
           </div>
 
@@ -264,21 +274,21 @@ export const RouteElevation: React.FC = () => {
                 <h3 className="font-['Barlow_Condensed'] text-xl font-bold uppercase tracking-wide text-white">
                   Ficha Técnica Oficial de la Prueba
                 </h3>
-                <span className="text-xs font-['JetBrains_Mono'] text-amber-400">UCI XCM Format</span>
+                <span className="text-xs font-['JetBrains_Mono'] text-amber-400">Modalidad MTB</span>
               </div>
 
               <div className="divide-y divide-slate-800/80 text-xs sm:text-sm">
                 <div className="py-2.5 flex justify-between gap-4">
                   <span className="text-slate-400 font-medium">Distancia Total</span>
-                  <span className="text-slate-100 font-['JetBrains_Mono'] font-semibold">47 kilómetros</span>
+                  <span className="text-slate-100 font-['JetBrains_Mono'] font-semibold">46.9 - 48.7 km</span>
                 </div>
                 <div className="py-2.5 flex justify-between gap-4">
                   <span className="text-slate-400 font-medium">Desnivel Positivo (+)</span>
-                  <span className="text-slate-100 font-['JetBrains_Mono'] font-semibold">+1.478 metros acumulados</span>
+                  <span className="text-slate-100 font-['JetBrains_Mono'] font-semibold">+1.450 m (+1.704 m acumulado GPX)</span>
                 </div>
                 <div className="py-2.5 flex justify-between gap-4">
                   <span className="text-slate-400 font-medium">Altitud Máxima</span>
-                  <span className="text-amber-400 font-['JetBrains_Mono'] font-semibold">5.029 m s. n. m. (Abra Glaciar)</span>
+                  <span className="text-amber-400 font-['JetBrains_Mono'] font-semibold">5.030 m s. n. m. (Abra Glaciar)</span>
                 </div>
                 <div className="py-2.5 flex justify-between gap-4">
                   <span className="text-slate-400 font-medium">Superficie de Rodaje</span>
@@ -286,15 +296,15 @@ export const RouteElevation: React.FC = () => {
                 </div>
                 <div className="py-2.5 flex justify-between gap-4">
                   <span className="text-slate-400 font-medium">Punto de Partida</span>
-                  <span className="text-slate-200">Comunidad de Patamanta (3.860 msnm)</span>
+                  <span className="text-slate-200">Comunidad de Patamanta (3.954 msnm)</span>
                 </div>
                 <div className="py-2.5 flex justify-between gap-4">
                   <span className="text-slate-400 font-medium">Puntos Intermedios</span>
-                  <span className="text-slate-200">Vilaque y Churiaque</span>
+                  <span className="text-slate-200">Churiaque y Quebrada de Ascenso</span>
                 </div>
                 <div className="py-2.5 flex justify-between gap-4">
                   <span className="text-slate-400 font-medium">Punto de Llegada</span>
-                  <span className="text-slate-200 font-semibold text-white">Alto Milluni (4.650 msnm)</span>
+                  <span className="text-slate-200 font-semibold text-white">Alto Milluni (4.635 msnm)</span>
                 </div>
                 <div className="py-2.5 flex justify-between gap-4">
                   <span className="text-slate-400 font-medium">Reconocimiento Oficial</span>
@@ -321,10 +331,10 @@ export const RouteElevation: React.FC = () => {
           <div className="lg:col-span-5 bg-slate-900/60 border border-slate-800 rounded-lg overflow-hidden flex flex-col justify-between">
             <div className="relative h-48 sm:h-56 bg-slate-950 overflow-hidden">
               <img
-                src="/src/assets/images/cyclist_high_altitude_xcm_1792904387327.jpg"
+                src={cyclistImage}
                 alt="Ciclista de montaña en rampa extrema de alta montaña andina"
                 className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
               <div className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md px-2.5 py-1 rounded text-[11px] font-semibold text-amber-400 uppercase tracking-wider border border-slate-800">
@@ -334,7 +344,7 @@ export const RouteElevation: React.FC = () => {
 
             <div className="p-5 sm:p-6 space-y-4">
               <h3 className="font-['Barlow_Condensed'] text-xl font-bold uppercase tracking-wide text-white">
-                De la Hazaña de Kilian Bron al Circuito Oficial XCM
+                De la Hazaña de Kilian Bron al Circuito Oficial MTB
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                 El Nevado Huayna Potosí capturó la atención del mundo del ciclismo extremo cuando el atleta francés

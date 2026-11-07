@@ -1,6 +1,7 @@
 import React from 'react';
 import { ShieldCheck, HeartPulse, Building2, Users2, Truck, AlertCircle } from 'lucide-react';
 import { EVENT_DATA } from '../data/eventData';
+import milluniImage from '../assets/images/route_alto_milluni_glacier_1792904385218.jpg';
 
 export const SafetyLogistics: React.FC = () => {
   return (
@@ -146,10 +147,10 @@ export const SafetyLogistics: React.FC = () => {
 
             <div className="lg:col-span-5 h-64 lg:h-full relative overflow-hidden">
               <img
-                src="/src/assets/images/route_alto_milluni_glacier_1792904385218.jpg"
+                src={milluniImage}
                 alt="Comunidad de Alto Milluni frente al glaciar Huayna Potosí"
                 className="w-full h-full object-cover min-h-[260px]"
-                referrerPolicy="no-referrer"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-transparent to-transparent lg:block hidden" />
             </div>

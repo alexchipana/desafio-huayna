@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Filter, Users, Flag, Trophy, Shield, Globe2, ChevronDown, CheckCircle2 } from 'lucide-react';
 import { OFFICIAL_INSCRIBED_RIDERS, InscribedRider } from '../data/inscribedRiders';
+import { CountryFlag } from './CountryFlag';
 
 export const InscribedRidersList: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -98,26 +99,26 @@ export const InscribedRidersList: React.FC = () => {
             <span className="font-semibold text-white">Delegaciones Internacionales Presentes:</span>
           </div>
           <div className="flex flex-wrap gap-2 text-[11px]">
-            <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-200">
-              🇧🇴 Bolivia (150+)
+            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
+              <CountryFlag country="Bolivia" /> Bolivia (150+)
             </span>
-            <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-200">
-              🇵🇪 Perú (Wayqis Club - 10 corredores)
+            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
+              <CountryFlag country="Perú" /> Perú (Wayqis Club - 10 corredores)
             </span>
-            <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-200">
-              🇪🇸 España (Revilla del Campo)
+            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
+              <CountryFlag country="España" /> España (Revilla del Campo)
             </span>
-            <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-200">
-              🇩🇪 Alemania
+            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
+              <CountryFlag country="Alemania" /> Alemania
             </span>
-            <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-200">
-              🇫🇷 Francia
+            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
+              <CountryFlag country="Francia" /> Francia
             </span>
-            <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-200">
-              🇺🇸 Estados Unidos
+            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
+              <CountryFlag country="Estados Unidos" /> Estados Unidos
             </span>
-            <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-200">
-              🇺🇾 Uruguay
+            <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200">
+              <CountryFlag country="Uruguay" /> Uruguay
             </span>
           </div>
         </div>
@@ -266,11 +267,12 @@ export const InscribedRidersList: React.FC = () => {
 
                       {/* Country */}
                       <td className="py-2.5 px-4 text-center">
-                        <span className={`inline-block px-2.5 py-0.5 rounded text-[11px] font-medium border ${
+                        <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-medium border ${
                           rider.country === 'Bolivia'
                             ? 'bg-slate-800 text-slate-300 border-slate-700'
                             : 'bg-emerald-950/60 text-emerald-300 border-emerald-800/60 font-semibold'
                         }`}>
+                          <CountryFlag country={rider.country} className="w-3.5 h-2.5 rounded-xs" />
                           {rider.country}
                         </span>
                       </td>

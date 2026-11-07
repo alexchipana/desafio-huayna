@@ -3,10 +3,10 @@ import { Trophy, Users, Award, CheckCircle, ArrowRight, Sparkles } from 'lucide-
 import { EVENT_DATA, Category } from '../data/eventData';
 
 interface PricingCategoriesProps {
-  onOpenRegister: (initialCategory?: string, isTeam?: boolean) => void;
+  onOpenRegister?: (initialCategory?: string, isTeam?: boolean) => void;
 }
 
-export const PricingCategories: React.FC<PricingCategoriesProps> = ({ onOpenRegister }) => {
+export const PricingCategories: React.FC<PricingCategoriesProps> = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>(EVENT_DATA.categories[0]);
 
   return (
