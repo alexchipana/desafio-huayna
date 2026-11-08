@@ -34,8 +34,11 @@ export const Header: React.FC<HeaderProps> = () => {
           </span>
         </a>
 
-        {/* Zone 2: 4-5 Clean single-line text links */}
+        {/* Zone 2: Clean single-line text links */}
         <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
+          <a href="#galeria" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0 text-amber-300 font-semibold">
+            Galería de Fotos
+          </a>
           <a href="#inscritos" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
             Lista de Inscritos (167)
           </a>
@@ -69,9 +72,16 @@ export const Header: React.FC<HeaderProps> = () => {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#0d121c] border-b border-slate-800 px-6 py-4 space-y-3">
           <a
-            href="#inscritos"
+            href="#galeria"
             onClick={() => setMobileMenuOpen(false)}
             className="block py-2 text-sm font-semibold text-amber-400 hover:text-amber-300"
+          >
+            Galería de Fotos Oficial
+          </a>
+          <a
+            href="#inscritos"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block py-2 text-sm font-medium text-slate-200 hover:text-amber-400"
           >
             Lista de Inscritos (167)
           </a>

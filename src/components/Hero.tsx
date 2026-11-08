@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Mountain, ShieldCheck, Calendar, MapPin } from 'lucide-react';
+import { ArrowRight, Mountain, ShieldCheck, Calendar, MapPin, Camera } from 'lucide-react';
 import { EVENT_DATA } from '../data/eventData';
 import { AudioPlayer } from './AudioPlayer';
 import heroImage from '../assets/images/hero_huayna_potosi_mtb_1792904385157.jpg';
@@ -113,6 +113,14 @@ export const Hero: React.FC<HeroProps> = () => {
               >
                 Ver Lista de Inscritos (167)
                 <ArrowRight className="w-4 h-4" />
+              </a>
+
+              <a
+                href="#galeria"
+                className="w-full sm:w-auto px-5 py-3 text-sm font-semibold tracking-wider text-amber-300 hover:text-white bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded transition-colors flex items-center justify-center gap-2"
+              >
+                <Camera className="w-4 h-4 text-amber-400" />
+                Galería de Fotos
               </a>
 
               <a

@@ -6,6 +6,7 @@
 import React from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+import { PhotoSlider } from './components/PhotoSlider';
 import { RouteElevation } from './components/RouteElevation';
 import { TechnicalRegulationsModal } from './components/TechnicalRegulations';
 import { InscribedRidersList } from './components/InscribedRidersList';
@@ -26,7 +27,10 @@ export default function App() {
         {/* 1. Hero Section & Key Performance Indicators */}
         <Hero />
 
-        {/* 2. Official Inscribed Riders (167 Riders with Dorsal/Club/Country) */}
+        {/* 2. Official Photo Gallery Slider (Google Photos Album) */}
+        <PhotoSlider />
+
+        {/* 3. Official Inscribed Riders (167 Riders with Dorsal/Club/Country) */}
         <InscribedRidersList />
 
         {/* 3. Official Race Schedule & Technical Regulations (PDF Convocatoria V1) */}
