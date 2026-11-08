@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Play, Pause, ExternalLink, Image as ImageIcon, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, ExternalLink, Image as ImageIcon } from 'lucide-react';
 
-// Dynamically import all 23 downloaded photos from Google Photos album
+// Dynamically import all 57 photos sorted in numerical order
 const imageModules = import.meta.glob<{ default: string }>('../assets/images/gallery/*.jpg', { eager: true });
-const GALLERY_IMAGES = Object.values(imageModules).map((mod) => mod.default);
+const GALLERY_IMAGES = Object.keys(imageModules)
+  .sort()
+  .map((key) => imageModules[key].default);
 
 export const PhotoSlider: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -11,6 +13,7 @@ export const PhotoSlider: React.FC = () => {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const thumbnailsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
   const total = GALLERY_IMAGES.length;
 
@@ -25,6 +28,18 @@ export const PhotoSlider: React.FC = () => {
   const goToSlide = (idx: number) => {
     setCurrentIndex(idx);
   };
+
+  // Scroll active thumbnail smoothly into view
+  useEffect(() => {
+    const el = thumbnailsRef.current[currentIndex];
+    if (el) {
+      el.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'nearest',
+      });
+    }
+  }, [currentIndex]);
 
   // Autoplay effect
   useEffect(() => {
@@ -70,7 +85,7 @@ export const PhotoSlider: React.FC = () => {
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-amber-400">
               <ImageIcon className="w-4 h-4" />
-              Galería Oficial de Ruta & Paisajes
+              Galería Oficial · 57 Fotografías
             </div>
             <h2 className="font-['Barlow_Condensed'] text-2xl sm:text-4xl font-extrabold uppercase tracking-tight text-white">
               Fotografías del Desafío Huayna Potosí
@@ -87,7 +102,7 @@ export const PhotoSlider: React.FC = () => {
               rel="noopener noreferrer"
               className="px-3.5 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
             >
-              <span>Ver Álbum en Google Photos</span>
+              <span>Ver Álbum en Google Photos (57 Fotos)</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>
@@ -116,7 +131,7 @@ export const PhotoSlider: React.FC = () => {
             <img
               key={currentIndex}
               src={GALLERY_IMAGES[currentIndex]}
-              alt={`Fotografía oficial ${currentIndex + 1} del Desafío Huayna Potosí`}
+              alt={`Fotografía oficial ${currentIndex + 1} de 57 del Desafío Huayna Potosí`}
               className="relative max-h-full max-w-full object-contain z-10 drop-shadow-2xl transition-opacity duration-300"
               loading="lazy"
             />
@@ -137,8 +152,8 @@ export const PhotoSlider: React.FC = () => {
                 type="button"
                 onClick={() => setIsAutoPlaying(!isAutoPlaying)}
                 className="p-2 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/10 text-white transition-colors cursor-pointer"
-                title={isAutoPlaying ? 'Pausar reproducción automática' : 'Reanudar pase automático'}
-                aria-label={isAutoPlaying ? 'Pausar reproducción automática' : 'Reanudar pase automático'}
+                title={isAutoPlaying ? 'Pausar pase automático' : 'Reanudar pase automático'}
+                aria-label={isAutoPlaying ? 'Pausar pase automático' : 'Reanudar pase automático'}
               >
                 {isAutoPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
               </button>
@@ -166,7 +181,7 @@ export const PhotoSlider: React.FC = () => {
             {/* Bottom Caption Pill */}
             <div className="absolute bottom-3 sm:bottom-4 inset-x-4 z-30 flex items-center justify-between text-xs text-slate-300">
               <span className="truncate bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
-                Álbum Oficial · Club MTB Rodadas La Paz
+                Álbum Oficial · Club MTB Rodadas La Paz (57 Fotos)
               </span>
               <span className="hidden sm:inline-block bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-[11px] text-amber-300">
                 Desliza en móvil o usa las flechas
@@ -180,13 +195,14 @@ export const PhotoSlider: React.FC = () => {
               {GALLERY_IMAGES.map((img, idx) => (
                 <button
                   key={idx}
+                  ref={(el) => (thumbnailsRef.current[idx] = el)}
                   onClick={() => goToSlide(idx)}
                   className={`relative shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
                     currentIndex === idx
                       ? 'border-amber-400 scale-105 shadow-md shadow-amber-400/20 opacity-100 ring-2 ring-amber-400/30'
                       : 'border-slate-800 opacity-50 hover:opacity-80'
                   }`}
-                  aria-label={`Ir a la foto ${idx + 1}`}
+                  aria-label={`Ir a la foto ${idx + 1} de 57`}
                 >
                   <img
                     src={img}
