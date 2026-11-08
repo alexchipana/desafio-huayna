@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Mountain, ShieldCheck, Calendar, MapPin, Camera } from 'lucide-react';
+import { ArrowRight, Mountain, ShieldCheck, Calendar, MapPin, Camera, Trophy } from 'lucide-react';
 import { EVENT_DATA } from '../data/eventData';
 import { AudioPlayer } from './AudioPlayer';
 import heroImage from '../assets/images/hero_huayna_potosi_mtb_1792904385157.jpg';
@@ -108,11 +108,11 @@ export const Hero: React.FC<HeroProps> = () => {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 pt-1">
               <a
-                href="#inscritos"
+                href="#resultados"
                 className="w-full sm:w-auto px-6 py-3 text-sm font-bold uppercase tracking-wider text-slate-950 bg-amber-400 hover:bg-amber-300 rounded transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-amber-500/20 cursor-pointer"
               >
-                Ver Lista de Inscritos (167)
-                <ArrowRight className="w-4 h-4" />
+                <Trophy className="w-4 h-4 fill-slate-950" />
+                Resultados de Carrera (145)
               </a>
 
               <a
@@ -120,14 +120,14 @@ export const Hero: React.FC<HeroProps> = () => {
                 className="w-full sm:w-auto px-5 py-3 text-sm font-semibold tracking-wider text-amber-300 hover:text-white bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded transition-colors flex items-center justify-center gap-2"
               >
                 <Camera className="w-4 h-4 text-amber-400" />
-                Galería de Fotos
+                Galería (57 Fotos)
               </a>
 
               <a
-                href="#reglamento-oficial"
+                href="#inscritos"
                 className="w-full sm:w-auto px-5 py-3 text-sm font-semibold tracking-wider text-slate-200 hover:text-white bg-slate-800/80 hover:bg-slate-800 border border-slate-700 rounded transition-colors flex items-center justify-center gap-2"
               >
-                Cronograma del Domingo 8
+                Nómina de Inscritos
               </a>
             </div>
 

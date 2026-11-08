@@ -36,11 +36,15 @@ export const Header: React.FC<HeaderProps> = () => {
 
         {/* Zone 2: Clean single-line text links */}
         <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
-          <a href="#galeria" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0 text-amber-300 font-semibold">
-            Galería de Fotos
+          <a href="#resultados" className="hover:text-amber-300 transition-colors whitespace-nowrap shrink-0 text-amber-400 font-bold flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+            Resultados de Carrera
+          </a>
+          <a href="#galeria" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
+            Galería (57 Fotos)
           </a>
           <a href="#inscritos" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
-            Lista de Inscritos (167)
+            Inscritos (167)
           </a>
           <a href="#reglamento-oficial" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
             Cronograma & Normas
@@ -49,7 +53,7 @@ export const Header: React.FC<HeaderProps> = () => {
             Ruta & Altimetría
           </a>
           <a href="#categorias" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
-            Categorías & Premios
+            Categorías
           </a>
           <a href="#seguridad" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
             Seguridad & Logística
@@ -72,11 +76,18 @@ export const Header: React.FC<HeaderProps> = () => {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#0d121c] border-b border-slate-800 px-6 py-4 space-y-3">
           <a
+            href="#resultados"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block py-2 text-sm font-bold text-amber-400 hover:text-amber-300"
+          >
+            🏆 Resultados Oficiales (145 Finisher)
+          </a>
+          <a
             href="#galeria"
             onClick={() => setMobileMenuOpen(false)}
-            className="block py-2 text-sm font-semibold text-amber-400 hover:text-amber-300"
+            className="block py-2 text-sm font-semibold text-slate-200 hover:text-amber-400"
           >
-            Galería de Fotos Oficial
+            Galería de Fotos (57 Fotos)
           </a>
           <a
             href="#inscritos"

@@ -7,6 +7,7 @@ import React from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { PhotoSlider } from './components/PhotoSlider';
+import { RaceResults } from './components/RaceResults';
 import { RouteElevation } from './components/RouteElevation';
 import { TechnicalRegulationsModal } from './components/TechnicalRegulations';
 import { InscribedRidersList } from './components/InscribedRidersList';
@@ -27,10 +28,13 @@ export default function App() {
         {/* 1. Hero Section & Key Performance Indicators */}
         <Hero />
 
-        {/* 2. Official Photo Gallery Slider (Google Photos Album) */}
+        {/* 2. Official Photo Gallery Slider (57 Photos from Google Photos) */}
         <PhotoSlider />
 
-        {/* 3. Official Inscribed Riders (167 Riders with Dorsal/Club/Country) */}
+        {/* 3. Official Race Results (145 Classified Athletes - Sporthive MYLAPS) */}
+        <RaceResults />
+
+        {/* 4. Official Inscribed Riders (167 Riders with Dorsal/Club/Country) */}
         <InscribedRidersList />
 
         {/* 3. Official Race Schedule & Technical Regulations (PDF Convocatoria V1) */}
