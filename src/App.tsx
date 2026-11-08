@@ -10,7 +10,6 @@ import { PhotoSlider } from './components/PhotoSlider';
 import { RaceResults } from './components/RaceResults';
 import { RouteElevation } from './components/RouteElevation';
 import { TechnicalRegulationsModal } from './components/TechnicalRegulations';
-import { InscribedRidersList } from './components/InscribedRidersList';
 import { PricingCategories } from './components/PricingCategories';
 import { SafetyLogistics } from './components/SafetyLogistics';
 import { ConcertAndSponsors } from './components/ConcertAndSponsors';
@@ -28,31 +27,28 @@ export default function App() {
         {/* 1. Hero Section & Key Performance Indicators */}
         <Hero />
 
-        {/* 2. Official Photo Gallery Slider (57 Photos from Google Photos) */}
+        {/* 2. Photo Gallery Slider (57 Photos from Google Photos) */}
         <PhotoSlider />
 
-        {/* 3. Official Race Results (145 Classified Athletes - Sporthive MYLAPS) */}
+        {/* 3. Race Results (145 Classified Athletes - Sporthive MYLAPS) */}
         <RaceResults />
 
-        {/* 4. Official Inscribed Riders (167 Riders with Dorsal/Club/Country) */}
-        <InscribedRidersList />
-
-        {/* 3. Official Race Schedule & Technical Regulations (PDF Convocatoria V1) */}
+        {/* 4. Race Schedule & Technical Regulations */}
         <TechnicalRegulationsModal />
 
-        {/* 4. Route Profile, Interactive Altimetry & Kilian Bron History */}
+        {/* 5. Route Profile & Interactive Altimetry */}
         <RouteElevation />
 
-        {/* 5. Competition Categories, Prizes & Team 10+1 Rate */}
+        {/* 6. Competition Categories & Prizes */}
         <PricingCategories />
 
-        {/* 6. Safety Deployment, Bomberos Santa Bárbara & Alto Milluni History */}
+        {/* 7. Safety Deployment & High Altitude Logistics */}
         <SafetyLogistics />
 
-        {/* 7. Cultural Finish Line Concert (Armadura) & Official Sponsors */}
+        {/* 8. Finish Line Concert (Armadura) & Sponsors */}
         <ConcertAndSponsors />
 
-        {/* 8. Mandatory Gear Checklist, WhatsApp Channels & FAQ */}
+        {/* 9. FAQs & Direct Contact */}
         <RulesAndContact />
       </main>
 

@@ -9,10 +9,13 @@ const GALLERY_IMAGES = Object.keys(imageModules)
 
 export const PhotoSlider: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const thumbnailsContainerRef = useRef<HTMLDivElement | null>(null);
   const thumbnailsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
   const total = GALLERY_IMAGES.length;
@@ -29,29 +32,48 @@ export const PhotoSlider: React.FC = () => {
     setCurrentIndex(idx);
   };
 
-  // Scroll active thumbnail smoothly into view
+  // Only autoplay when slider is physically visible on the screen
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  // Scroll active thumbnail inside its local container ONLY (never moves window/page)
+  useEffect(() => {
+    const container = thumbnailsContainerRef.current;
     const el = thumbnailsRef.current[currentIndex];
-    if (el) {
-      el.scrollIntoView({
+    if (container && el) {
+      const scrollPos = el.offsetLeft - container.clientWidth / 2 + el.clientWidth / 2;
+      container.scrollTo({
+        left: scrollPos,
         behavior: 'smooth',
-        inline: 'center',
-        block: 'nearest',
       });
     }
   }, [currentIndex]);
 
-  // Autoplay effect
+  // Autoplay effect (only when visible and autoplay enabled)
   useEffect(() => {
-    if (isAutoPlaying && total > 0) {
+    if (isAutoPlaying && isVisible && total > 0) {
       timerRef.current = setInterval(() => {
         nextSlide();
-      }, 4500);
+      }, 5000);
     }
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isAutoPlaying, nextSlide, total]);
+  }, [isAutoPlaying, isVisible, nextSlide, total]);
 
   // Touch Swipe Handlers for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -78,20 +100,20 @@ export const PhotoSlider: React.FC = () => {
   if (total === 0) return null;
 
   return (
-    <section id="galeria" className="py-10 sm:py-16 bg-[#07090e] border-b border-slate-800 overflow-hidden">
+    <section ref={sectionRef} id="galeria" className="py-10 sm:py-16 bg-[#07090e] border-b border-slate-800 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-6">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2 border-b border-slate-800/80">
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-amber-400">
               <ImageIcon className="w-4 h-4" />
-              Galería Oficial · 57 Fotografías
+              Galería Fotográfica · 57 Fotos
             </div>
             <h2 className="font-['Barlow_Condensed'] text-2xl sm:text-4xl font-extrabold uppercase tracking-tight text-white">
               Fotografías del Desafío Huayna Potosí
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 max-w-2xl">
-              Capturas del imponente paisaje de la Cordillera Real, las comunidades anfitrionas y el espíritu de la prueba en alta montaña.
+              Imágenes de la travesía de alta montaña por la Cordillera Real, paisajes andinos y ciclistas en ruta.
             </p>
           </div>
 
@@ -131,7 +153,7 @@ export const PhotoSlider: React.FC = () => {
             <img
               key={currentIndex}
               src={GALLERY_IMAGES[currentIndex]}
-              alt={`Fotografía oficial ${currentIndex + 1} de 57 del Desafío Huayna Potosí`}
+              alt={`Fotografía ${currentIndex + 1} de 57 del Desafío Huayna Potosí`}
               className="relative max-h-full max-w-full object-contain z-10 drop-shadow-2xl transition-opacity duration-300"
               loading="lazy"
             />
@@ -181,7 +203,7 @@ export const PhotoSlider: React.FC = () => {
             {/* Bottom Caption Pill */}
             <div className="absolute bottom-3 sm:bottom-4 inset-x-4 z-30 flex items-center justify-between text-xs text-slate-300">
               <span className="truncate bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
-                Álbum Oficial · Club MTB Rodadas La Paz (57 Fotos)
+                Álbum Comunitario · Desafío Huayna Potosí (57 Fotos)
               </span>
               <span className="hidden sm:inline-block bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-[11px] text-amber-300">
                 Desliza en móvil o usa las flechas
@@ -191,7 +213,10 @@ export const PhotoSlider: React.FC = () => {
 
           {/* Bottom Thumbnails Strip */}
           <div className="p-2 sm:p-3 bg-slate-950/95 border-t border-slate-800/80">
-            <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto py-1 px-1 scrollbar-thin">
+            <div
+              ref={thumbnailsContainerRef}
+              className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto py-1 px-1 scrollbar-thin"
+            >
               {GALLERY_IMAGES.map((img, idx) => (
                 <button
                   key={idx}

@@ -24,8 +24,11 @@ export const Footer: React.FC = () => {
 
           {/* Quick Nav Links */}
           <div className="flex flex-wrap gap-x-8 gap-y-2 text-xs font-medium">
-            <a href="#inscritos" className="hover:text-amber-400 transition-colors">
-              Lista de Inscritos
+            <a href="#resultados" className="text-amber-400 font-semibold hover:text-amber-300 transition-colors">
+              Resultados de Carrera
+            </a>
+            <a href="#galeria" className="hover:text-amber-400 transition-colors">
+              Galería (57 Fotos)
             </a>
             <a href="#ruta" className="hover:text-amber-400 transition-colors">
               Ruta & Altimetría

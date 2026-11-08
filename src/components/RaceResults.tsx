@@ -66,7 +66,7 @@ export const RaceResults: React.FC = () => {
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-4 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition-all cursor-pointer"
             >
-              <span>Ver en Sporthive Oficial</span>
+              <span>Ver en Sporthive</span>
               <ExternalLink className="w-4 h-4" />
             </a>
           </div>
@@ -76,7 +76,7 @@ export const RaceResults: React.FC = () => {
         <div>
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">
             <Trophy className="w-4 h-4 text-amber-400" />
-            Podio General Oficial de la Competencia
+            Podio General de la Competencia
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, Mountain, ShieldCheck, Calendar, MapPin, Camera, Trophy } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, Mountain, ShieldCheck, Calendar, MapPin, Camera, Trophy, CheckCircle2 } from 'lucide-react';
 import { EVENT_DATA } from '../data/eventData';
 import { AudioPlayer } from './AudioPlayer';
 import heroImage from '../assets/images/hero_huayna_potosi_mtb_1792904385157.jpg';
@@ -9,34 +9,6 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = () => {
-  // Target race date: November 8, 2026 06:00:00 Bolivia time (UTC-4)
-  const [timeLeft, setTimeLeft] = useState<{
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
-  }>({ days: 15, hours: 8, minutes: 22, seconds: 40 });
-
-  useEffect(() => {
-    const target = new Date('2026-11-08T06:00:00-04:00').getTime();
-
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const difference = target - now;
-
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-        setTimeLeft({ days, hours, minutes, seconds });
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section className="relative pt-6 sm:pt-10 pb-12 sm:pb-16 overflow-hidden border-b border-slate-800">
@@ -122,51 +94,22 @@ export const Hero: React.FC<HeroProps> = () => {
                 <Camera className="w-4 h-4 text-amber-400" />
                 Galería (57 Fotos)
               </a>
-
-              <a
-                href="#inscritos"
-                className="w-full sm:w-auto px-5 py-3 text-sm font-semibold tracking-wider text-slate-200 hover:text-white bg-slate-800/80 hover:bg-slate-800 border border-slate-700 rounded transition-colors flex items-center justify-center gap-2"
-              >
-                Nómina de Inscritos
-              </a>
             </div>
 
-            {/* Audio Player: Desafío Huayna Canción Oficial */}
+            {/* Audio Player: Desafío Huayna Canción */}
             <div className="pt-2">
               <AudioPlayer />
             </div>
 
-            {/* Countdown bar */}
-            <div className="pt-2">
-              <div className="text-xs uppercase tracking-widest text-slate-400 mb-2">
-                Tiempo restante para la largada oficial:
-              </div>
-              <div className="grid grid-cols-4 gap-2 max-w-md">
-                <div className="bg-slate-900/80 border border-slate-800 p-2 sm:p-2.5 rounded text-center">
-                  <div className="font-['JetBrains_Mono'] font-bold text-lg sm:text-2xl text-amber-400 tabular-nums">
-                    {String(timeLeft.days).padStart(2, '0')}
-                  </div>
-                  <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-slate-400">Días</div>
-                </div>
-                <div className="bg-slate-900/80 border border-slate-800 p-2 sm:p-2.5 rounded text-center">
-                  <div className="font-['JetBrains_Mono'] font-bold text-lg sm:text-2xl text-slate-200 tabular-nums">
-                    {String(timeLeft.hours).padStart(2, '0')}
-                  </div>
-                  <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-slate-400">Horas</div>
-                </div>
-                <div className="bg-slate-900/80 border border-slate-800 p-2 sm:p-2.5 rounded text-center">
-                  <div className="font-['JetBrains_Mono'] font-bold text-lg sm:text-2xl text-slate-200 tabular-nums">
-                    {String(timeLeft.minutes).padStart(2, '0')}
-                  </div>
-                  <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-slate-400">Min</div>
-                </div>
-                <div className="bg-slate-900/80 border border-slate-800 p-2 sm:p-2.5 rounded text-center">
-                  <div className="font-['JetBrains_Mono'] font-bold text-lg sm:text-2xl text-slate-200 tabular-nums">
-                    {String(timeLeft.seconds).padStart(2, '0')}
-                  </div>
-                  <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-slate-400">Seg</div>
-                </div>
-              </div>
+            {/* Race Completed Status Badge */}
+            <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-2.5">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider w-fit">
+                <CheckCircle2 className="w-4 h-4" />
+                Carrera Finalizada · 8 de Noviembre de 2026
+              </span>
+              <span className="text-xs text-slate-400">
+                145 ciclistas clasificados en meta · Cronometraje Sporthive
+              </span>
             </div>
           </div>
 
@@ -210,7 +153,7 @@ export const Hero: React.FC<HeroProps> = () => {
             <div className="font-['JetBrains_Mono'] font-bold text-xl sm:text-3xl text-white mt-1 tabular-nums">
               +1.450 <span className="text-xs sm:text-sm font-sans text-amber-400">m</span>
             </div>
-            <div className="text-[11px] sm:text-xs text-slate-400 mt-1">+1.704 m acumulado GPX oficial</div>
+            <div className="text-[11px] sm:text-xs text-slate-400 mt-1">+1.704 m acumulado según GPX</div>
           </div>
 
           <div className="p-3 sm:p-5 rounded-lg bg-slate-900/80 border border-slate-800/80">

@@ -92,7 +92,7 @@ export const AudioPlayer: React.FC = () => {
             onClick={togglePlay}
             type="button"
             className="w-11 h-11 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 flex items-center justify-center shrink-0 transition-transform active:scale-95 shadow-md shadow-amber-400/20 cursor-pointer"
-            aria-label={isPlaying ? 'Pausar música' : 'Reproducir canción oficial'}
+            aria-label={isPlaying ? 'Pausar música' : 'Reproducir canción'}
           >
             {isPlaying ? (
               <Pause className="w-5 h-5 fill-slate-950" />
@@ -104,7 +104,7 @@ export const AudioPlayer: React.FC = () => {
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400 px-1.5 py-0.5 bg-amber-500/10 rounded border border-amber-500/20">
-                Canción Oficial
+                Canción del Evento
               </span>
               {isPlaying && (
                 <div className="flex items-center gap-0.5">
@@ -118,7 +118,7 @@ export const AudioPlayer: React.FC = () => {
               Desafío Huayna Potosí
             </div>
             <div className="text-[11px] text-slate-400 truncate">
-              Tema oficial de la competencia de ciclismo de montaña
+              Canción tributo a la carrera de ciclismo de montaña
             </div>
           </div>
         </div>

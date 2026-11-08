@@ -43,9 +43,6 @@ export const Header: React.FC<HeaderProps> = () => {
           <a href="#galeria" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
             Galería (57 Fotos)
           </a>
-          <a href="#inscritos" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
-            Inscritos (167)
-          </a>
           <a href="#reglamento-oficial" className="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
             Cronograma & Normas
           </a>
@@ -88,13 +85,6 @@ export const Header: React.FC<HeaderProps> = () => {
             className="block py-2 text-sm font-semibold text-slate-200 hover:text-amber-400"
           >
             Galería de Fotos (57 Fotos)
-          </a>
-          <a
-            href="#inscritos"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2 text-sm font-medium text-slate-200 hover:text-amber-400"
-          >
-            Lista de Inscritos (167)
           </a>
           <a
             href="#reglamento-oficial"
