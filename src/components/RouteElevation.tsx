@@ -270,104 +270,47 @@ export const RouteElevation: React.FC = () => {
           </div>
         </div>
 
-        {/* 2-Column Split: Technical Specifications Table + Key Findings from Technical Talk */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
-          {/* Column 1: Technical Parameters Table */}
-          <div className="lg:col-span-6 bg-slate-900/60 border border-slate-800 rounded-lg p-4 sm:p-6 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                <h3 className="font-['Barlow_Condensed'] text-xl font-bold uppercase tracking-wide text-white">
-                  Ficha Técnica Oficial
-                </h3>
-                <span className="text-xs font-['JetBrains_Mono'] text-amber-400">Modalidad MTB</span>
-              </div>
-
-              <div className="divide-y divide-slate-800/80 text-xs sm:text-sm">
-                <div className="py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-400 font-medium">Distancia Total</span>
-                  <span className="text-slate-100 font-['JetBrains_Mono'] font-semibold">46.9 km (48.7 km trazado)</span>
-                </div>
-                <div className="py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-400 font-medium">Desnivel Positivo (+)</span>
-                  <span className="text-slate-100 font-['JetBrains_Mono'] font-semibold">+1.450 m (+1.704 m acumulado GPX)</span>
-                </div>
-                <div className="py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-400 font-medium">Altitud Máxima</span>
-                  <span className="text-amber-400 font-['JetBrains_Mono'] font-semibold">5.030 m s. n. m. (Abra Glaciar)</span>
-                </div>
-                <div className="py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-400 font-medium">Superficie de Rodaje</span>
-                  <span className="text-slate-200">100% camino no pavimentado, tierra y roca</span>
-                </div>
-                <div className="py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-400 font-medium">Punto de Partida</span>
-                  <span className="text-slate-200">Patamanta (3.954 msnm)</span>
-                </div>
-                <div className="py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-400 font-medium">Puntos Intermedios</span>
-                  <span className="text-slate-200">Churiaque y Quebrada de Ascenso</span>
-                </div>
-                <div className="py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-400 font-medium">Punto de Llegada</span>
-                  <span className="text-slate-200 font-semibold text-white">Alto Milluni (4.635 msnm)</span>
-                </div>
-                <div className="py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-400 font-medium">Fecha de Carrera</span>
-                  <span className="text-amber-400 font-bold">Domingo, 8 de noviembre de 2026</span>
-                </div>
-              </div>
+        {/* Technical Specifications Table */}
+        <div className="bg-slate-900/60 border border-slate-800 rounded-lg p-4 sm:p-6">
+          <div>
+            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+              <h3 className="font-['Barlow_Condensed'] text-xl font-bold uppercase tracking-wide text-white">
+                Ficha Técnica Oficial
+              </h3>
+              <span className="text-xs font-['JetBrains_Mono'] text-amber-400">Modalidad MTB</span>
             </div>
 
-            <div className="pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
-              <span>Tiempo límite: 6 horas con punto de corte en Churiaque a las 11:30 AM.</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 divide-y sm:divide-y-0 divide-slate-800/80 text-xs sm:text-sm">
+              <div className="py-2.5 flex justify-between gap-4 sm:border-b sm:border-slate-800/80">
+                <span className="text-slate-400 font-medium">Distancia Total</span>
+                <span className="text-slate-100 font-['JetBrains_Mono'] font-semibold">46.9 km (48.7 km trazado)</span>
+              </div>
+              <div className="py-2.5 flex justify-between gap-4 sm:border-b sm:border-slate-800/80">
+                <span className="text-slate-400 font-medium">Desnivel Positivo (+)</span>
+                <span className="text-slate-100 font-['JetBrains_Mono'] font-semibold">+1.450 m (+1.704 m GPX)</span>
+              </div>
+              <div className="py-2.5 flex justify-between gap-4 sm:border-b sm:border-slate-800/80">
+                <span className="text-slate-400 font-medium">Altitud Máxima</span>
+                <span className="text-amber-400 font-['JetBrains_Mono'] font-semibold">5.030 m s. n. m. (Abra Glaciar)</span>
+              </div>
+              <div className="py-2.5 flex justify-between gap-4">
+                <span className="text-slate-400 font-medium">Superficie de Rodaje</span>
+                <span className="text-slate-200">100% tierra y roca no pavimentada</span>
+              </div>
+              <div className="py-2.5 flex justify-between gap-4">
+                <span className="text-slate-400 font-medium">Partida → Llegada</span>
+                <span className="text-slate-200">Patamanta (3.954 m) → Alto Milluni (4.635 m)</span>
+              </div>
+              <div className="py-2.5 flex justify-between gap-4">
+                <span className="text-slate-400 font-medium">Fecha de Carrera</span>
+                <span className="text-amber-400 font-bold">Domingo, 8 de noviembre de 2026</span>
+              </div>
             </div>
           </div>
 
-          {/* Column 2: Key Guidance from Official Technical Talk */}
-          <div className="lg:col-span-6 bg-slate-900/60 border border-slate-800 rounded-lg p-4 sm:p-6 flex flex-col justify-between space-y-4">
-            <div>
-              <div className="flex items-center gap-2 pb-3 border-b border-slate-800">
-                <ShieldAlert className="w-5 h-5 text-amber-400 shrink-0" />
-                <h3 className="font-['Barlow_Condensed'] text-xl font-bold uppercase tracking-wide text-white">
-                  Aspectos Clave de la Charla Técnica
-                </h3>
-              </div>
-
-              <div className="space-y-3 pt-3 text-xs sm:text-sm">
-                <div className="p-3 rounded bg-slate-950/70 border border-slate-800 space-y-1">
-                  <div className="flex items-center gap-2 font-semibold text-sky-400 text-xs uppercase">
-                    <CloudRain className="w-3.5 h-3.5" /> Clima & Altitud en Ruta
-                  </div>
-                  <p className="text-slate-300 text-xs leading-relaxed">
-                    Pronóstico con probabilidad de llovizna en tramo bajo (km 0-15) y alta probabilidad de aguanieve/nieve sobre los 4.500 msnm. Imprescindible rompevientos térmico impermeable y guantes completos.
-                  </p>
-                </div>
-
-                <div className="p-3 rounded bg-slate-950/70 border border-slate-800 space-y-1">
-                  <div className="flex items-center gap-2 font-semibold text-amber-400 text-xs uppercase">
-                    <Wrench className="w-3.5 h-3.5" /> Recomendación de Frenos & Transmisión
-                  </div>
-                  <p className="text-slate-300 text-xs leading-relaxed">
-                    Uso recomendado de <strong>pastillas de freno metálicas</strong> ante la presencia de barro y lodo. Revisar transmisión y presiones de neumáticos para barro y roca suelta.
-                  </p>
-                </div>
-
-                <div className="p-3 rounded bg-slate-950/70 border border-slate-800 space-y-1">
-                  <div className="flex items-center gap-2 font-semibold text-rose-400 text-xs uppercase">
-                    <AlertCircle className="w-3.5 h-3.5" /> Descenso Crítico previo a Milluni
-                  </div>
-                  <p className="text-slate-300 text-xs leading-relaxed">
-                    Tras superar la cota máxima del Abra Glaciar, el descenso hacia Alto Milluni presenta erosiones por agua, piedra suelta y gradas naturales. Se exige precaución extrema y control de velocidad.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-3 rounded bg-emerald-950/30 border border-emerald-500/30 text-xs text-emerald-300 flex items-center gap-2">
-              <span className="font-semibold uppercase tracking-wider text-[11px] text-emerald-400">Ruta Protegida:</span>
-              <span>Prohibido el ingreso de vehículos particulares para seguridad de los 167 ciclistas.</span>
-            </div>
+          <div className="pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
+            <span>Tiempo límite: 6 horas con punto de corte en Churiaque a las 11:30 AM.</span>
           </div>
         </div>
       </div>
