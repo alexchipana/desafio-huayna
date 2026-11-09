@@ -11,7 +11,7 @@ import { RaceResults } from './components/RaceResults';
 import { RouteElevation } from './components/RouteElevation';
 import { TechnicalRegulationsModal } from './components/TechnicalRegulations';
 import { PricingCategories } from './components/PricingCategories';
-import { SafetyLogistics } from './components/SafetyLogistics';
+
 import { ConcertAndSponsors } from './components/ConcertAndSponsors';
 import { RulesAndContact } from './components/RulesAndContact';
 import { Footer } from './components/Footer';
@@ -41,9 +41,6 @@ export default function App() {
 
         {/* 6. Competition Categories & Prizes */}
         <PricingCategories />
-
-        {/* 7. Safety Deployment & High Altitude Logistics */}
-        <SafetyLogistics />
 
         {/* 8. Finish Line Concert (Armadura) & Sponsors */}
         <ConcertAndSponsors />
